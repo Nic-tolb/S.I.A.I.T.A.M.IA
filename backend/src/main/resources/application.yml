@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: incidents-ai
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/incidents}
+    username: ${DB_USER:incidents}
+    # No default on purpose: credentials must come from environment variables
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # The schema is created by database/init scripts; Hibernate only validates it
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5500}
+  n8n:
+    base-url: ${N8N_BASE_URL:http://localhost:5678}
+    webhook-secret: ${N8N_WEBHOOK_SECRET:}
+    indexing-path: ${N8N_INDEXING_PATH:/webhook/index-articles}
+    rag-path: ${N8N_RAG_PATH:/webhook/rag-assistant}
+    connect-timeout: ${N8N_CONNECT_TIMEOUT:5s}
+    read-timeout: ${N8N_READ_TIMEOUT:60s}
+  rag:
+    # Single source of truth: Spring Boot sends threshold and top-k to n8n on every query
+    similarity-threshold: ${RAG_SIMILARITY_THRESHOLD:0.70}
+    top-k: ${RAG_TOP_K:5}
