@@ -1,0 +1,17 @@
+-- =====================================================================
+-- 01_schema.sql — Relational schema (PostgreSQL)
+-- Runs automatically the first time the postgres volume is created.
+-- Hibernate runs in "validate" mode: JPA entities must match this script.
+-- =====================================================================
+
+-- TODO: create the tables of the minimum data model:
+--   users, categories, incidents, knowledge_articles,
+--   ai_queries, ai_responses, response_sources, ratings
+--   (avoid "user": it is a reserved word in PostgreSQL)
+--
+-- Checklist per table:
+--   [ ] PK and FKs with explicit ON DELETE
+--   [ ] Domain CHECKs (status, priority, score BETWEEN 1 AND 5, similarity 0..1)
+--   [ ] CHECK resolved_at >= created_at
+--   [ ] Indexes on columns used by analytics (created_at, category_id, priority, status)
+--   [ ] AI query statuses: PENDING, ANSWERED, NO_RESULTS, ERROR
