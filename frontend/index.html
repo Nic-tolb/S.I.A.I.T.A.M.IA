@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidentes IA</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Code (ids, classes, comments) in English; user-visible text in Spanish -->
+    <header class="topbar">
+        <h1>Incidentes IA</h1>
+        <nav>
+            <a href="#incidents">Incidentes</a>
+            <a href="#knowledge-base">Base de conocimiento</a>
+            <a href="#assistant">Asistente IA</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#history">Historial</a>
+        </nav>
+        <span id="api-status" class="badge">Conectando…</span>
+    </header>
+
+    <main>
+        <section id="incidents" class="view"><h2>Incidentes</h2><!-- RF01 --></section>
+        <section id="knowledge-base" class="view"><h2>Base de conocimiento</h2><!-- RF02 / RF03 --></section>
+        <section id="assistant" class="view"><h2>Asistente IA</h2><!-- RF04 / RF05 --></section>
+        <section id="dashboard" class="view"><h2>Dashboard</h2><!-- RF06 / RF07 --></section>
+        <section id="history" class="view"><h2>Historial y evaluación</h2><!-- RF08 --></section>
+    </main>
+
+    <!-- Chart.js for the dashboard -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
