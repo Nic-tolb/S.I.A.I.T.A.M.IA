@@ -1,0 +1,29 @@
+# Environment variables (never commit credentials)
+.env
+*.env
+!.env.example
+
+# Java / Maven
+backend/target/
+*.class
+*.log
+hs_err_pid*
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if any auxiliary tooling is used)
+node_modules/
+
+# Python (synthetic data scripts)
+__pycache__/
+.venv/
