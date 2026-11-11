@@ -60,4 +60,4 @@ Tasks, phases and integration points: [docs/WORK_PLAN.md](docs/WORK_PLAN.md).
 |---|---|
 | | A: Data & analytics (RF06, RF07, data model) |
 | | B: Management & operations (RF01, RF02, RF08) |
-| | C: AI & RAG (RF03, RF04, RF05) |
+| Mic022 | C: AI & RAG (RF03, RF04, RF05) |
