@@ -1,8 +1,7 @@
 package com.campuslands.incidents.entity.enums;
 
 /**
- * Lifecycle of an incident (RF01). The assignment requires at least 4 statuses.
- * Must match the CHECK constraint on {@code incidents.status} in 01_schema.sql.
+ * Incident lifecycle. Values must match {@code chk_incidents_status} in 01_schema.sql.
  */
 public enum IncidentStatus {
     OPEN,
@@ -10,8 +9,11 @@ public enum IncidentStatus {
     RESOLVED,
     CLOSED;
 
-    /** Resolved or closed incidents have a {@code resolved_at} date (used to compute resolution times). */
-    public boolean isFinished() {
+    /**
+     * RESOLVED and CLOSED count as resolved: they have {@code resolved_at}
+     * and are included in the resolution rate and average resolution time.
+     */
+    public boolean isResolved() {
         return this == RESOLVED || this == CLOSED;
     }
 }
