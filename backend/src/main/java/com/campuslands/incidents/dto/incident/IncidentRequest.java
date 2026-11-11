@@ -16,7 +16,7 @@ import com.campuslands.incidents.entity.enums.IncidentStatus;
 public record IncidentRequest(
 
         @NotBlank(message = "El título es obligatorio")
-        @Size(max = 150, message = "El título no puede superar 150 caracteres")
+        @Size(max = 200, message = "El título no puede superar 200 caracteres")
         String title,
 
         @NotBlank(message = "La descripción es obligatoria")
