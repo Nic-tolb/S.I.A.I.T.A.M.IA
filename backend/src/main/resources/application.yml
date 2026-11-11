@@ -39,5 +39,5 @@ app:
     read-timeout: ${N8N_READ_TIMEOUT:60s}
   rag:
     # Single source of truth: Spring Boot sends threshold and top-k to n8n on every query
-    similarity-threshold: ${RAG_SIMILARITY_THRESHOLD:0.70}
+    similarity-threshold: ${RAG_SIMILARITY_THRESHOLD:0.55}
     top-k: ${RAG_TOP_K:5}
