@@ -1,6 +1,6 @@
 package com.campuslands.incidents.dto.incident;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 
 import com.campuslands.incidents.entity.enums.IncidentPriority;
 import com.campuslands.incidents.entity.enums.IncidentStatus;
@@ -21,6 +21,6 @@ public record IncidentResponse(
         String categoryName,
         Long userId,
         String userName,
-        OffsetDateTime createdAt,
-        OffsetDateTime resolvedAt) {
+        Instant createdAt,
+        Instant resolvedAt) {
 }
