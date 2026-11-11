@@ -49,3 +49,81 @@ main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; }
 
 .view { display: none; }
 .view.active { display: block; }
+
+/* ---------------------------------------------------------------------
+   Shared UI helpers (js/ui/*). Used by every view.
+   --------------------------------------------------------------------- */
+
+.muted { color: var(--muted); }
+
+/* messages.js */
+.messages:empty { display: none; }
+.message {
+    margin: 0.75rem 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+.message-success { color: var(--ok); border-color: var(--ok); }
+.message-error { color: var(--error); border-color: var(--error); }
+.message-info { color: var(--primary); border-color: var(--primary); }
+
+/* table.js — wide tables scroll inside their container on small screens */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: block;
+    overflow-x: auto;
+}
+.data-table th,
+.data-table td {
+    padding: 0.55rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.data-table th { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table td button + button { margin-left: 0.4rem; }
+.table-empty { color: var(--muted); font-style: italic; }
+
+.btn-small {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
+}
+.btn-small:hover { background: var(--primary); color: #fff; }
+
+/* forms.js */
+[aria-invalid="true"] { border-color: var(--error); }
+.field-error {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--error);
+}
+
+/* format.js badge(): priority, incident status and AI query status */
+.badge-p1 { color: #fff; background: var(--error); border-color: var(--error); }
+.badge-p2 { color: #a84300; border-color: #a84300; }
+.badge-p3 { color: var(--primary); border-color: var(--primary); }
+.badge-p4 { color: var(--muted); }
+
+.badge-status-open { color: var(--primary); border-color: var(--primary); }
+.badge-status-in_progress { color: #a84300; border-color: #a84300; }
+.badge-status-resolved,
+.badge-status-closed { color: var(--ok); border-color: var(--ok); }
+
+.badge-query-answered { color: var(--ok); border-color: var(--ok); }
+.badge-query-no_results { color: var(--muted); }
+.badge-query-pending { color: var(--primary); border-color: var(--primary); }
+.badge-query-error { color: var(--error); border-color: var(--error); }
