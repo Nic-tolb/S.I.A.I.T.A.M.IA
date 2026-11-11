@@ -6,9 +6,19 @@ Workflows are exported as JSON into `workflows/` (mandatory deliverable).
 # Import all workflows into the container
 docker compose exec n8n n8n import:workflow --separate --input=/workflows
 
+# Activate (publish) them and restart n8n so the production webhooks are registered
+docker compose exec n8n n8n publish:workflow --id=IdxArticlesFlow1
+docker compose restart n8n
+
 # Export after editing them in the UI (http://localhost:5678)
 docker compose exec n8n n8n export:workflow --all --separate --output=/workflows
 ```
+
+The Qdrant collection must exist before indexing: `./scripts/qdrant/create_collection.sh`.
+
+| File | Workflow id | Webhook |
+|---|---|---|
+| `01-index-articles.json` | `IdxArticlesFlow1` | `POST /webhook/index-articles` |
 
 Every webhook must validate the `X-Webhook-Secret` header against `$env.N8N_WEBHOOK_SECRET`.
 Keys (OpenRouter) are read with `$env.*` and never written inside the workflow.
