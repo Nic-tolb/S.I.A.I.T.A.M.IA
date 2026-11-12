@@ -38,5 +38,45 @@
     "symptoms": "La intranet no abre por nombre, pero sí escribiendo la dirección IP. El navegador muestra 'No se puede encontrar el servidor' en los sitios internos. Algunos sitios abren y otros no, con el error DNS_PROBE_FINISHED_NXDOMAIN.",
     "cause": "El equipo usa servidores DNS públicos o incorrectos en lugar de los DNS corporativos, la caché de DNS tiene registros desactualizados, el servidor DNS interno falla, o el registro DNS del sistema interno fue cambiado o eliminado.",
     "solution": "1. Ejecutar 'nslookup nombre-del-sitio' en el símbolo del sistema para ver qué servidor DNS responde y si resuelve el nombre.\n2. Ejecutar 'ipconfig /all' y comprobar que los servidores DNS configurados son los corporativos y no otros (por ejemplo 8.8.8.8).\n3. Si los DNS están configurados a mano, cambiar el adaptador a 'Obtener la dirección del servidor DNS automáticamente'.\n4. Limpiar la caché de DNS con 'ipconfig /flushdns' y cerrar y abrir el navegador.\n5. Si se usa VPN, desconectar y volver a conectar para que se apliquen los DNS internos.\n6. Si varios usuarios no resuelven el mismo sitio, escalar a infraestructura indicando el nombre exacto que falla, porque el problema está en el servidor DNS o en el registro del sitio."
+  },
+  {
+    "topic": "equipo-no-enciende",
+    "title": "El equipo no enciende",
+    "problem": "El computador de escritorio o el portátil no enciende al presionar el botón de encendido, o enciende pero no arranca el sistema.",
+    "symptoms": "El computador de escritorio no enciende al presionar el botón: no hay luces ni ruido de ventiladores. El portátil no enciende aunque está conectado al cargador. El equipo enciende las luces pero la pantalla queda negra y no arranca.",
+    "cause": "Falta de energía en la toma o en la regleta, cable de poder o cargador dañado, batería del portátil totalmente descargada, fuente de poder averiada, carga estática acumulada, o memoria RAM mal asentada cuando hay luces pero no imagen.",
+    "solution": "1. Comprobar que la toma eléctrica funciona conectando otro aparato, y que la regleta o el UPS esté encendido.\n2. Revisar que el cable de poder o el cargador estén bien conectados; en portátiles, verificar si la luz del cargador enciende y probar con otro cargador compatible.\n3. Descargar la energía estática: desconectar el cable de poder (y la batería si es extraíble), mantener presionado el botón de encendido 30 segundos y volver a conectar.\n4. En portátiles muy descargados, dejarlos conectados al cargador al menos 30 minutos antes de intentar encender.\n5. Si enciende luces pero la pantalla queda negra, conectar un monitor externo para descartar falla de pantalla.\n6. Si sigue sin arrancar, no abrir el equipo: registrar el número de serie y escalar a soporte de hardware para revisar la fuente de poder, la memoria o la placa base."
+  },
+  {
+    "topic": "impresora-no-imprime",
+    "title": "La impresora de red no imprime",
+    "problem": "Los documentos enviados a la impresora de red de la oficina no se imprimen o se quedan detenidos en la cola de impresión.",
+    "symptoms": "Los documentos quedan en cola y la impresora del piso no imprime. La impresora aparece como 'Sin conexión' en todos los equipos. Se envía a imprimir y no sale nada, sin ningún mensaje de error. Puede haber trabajos atascados en la cola de impresión que bloquean a los demás.",
+    "cause": "Un trabajo dañado que bloquea la cola de impresión, servicio de cola de impresión (Spooler) detenido en el equipo, impresora apagada, sin papel, con atasco de papel o sin tóner, impresora que cambió de dirección IP, o controlador de la impresora dañado.",
+    "solution": "1. Revisar físicamente la impresora: que esté encendida, sin mensajes de error en su panel, con papel, sin atasco de papel y con tóner.\n2. Si aparece 'Sin conexión' en todos los equipos, imprimir la página de configuración desde el panel de la impresora y verificar su dirección IP y que el cable de red esté conectado.\n3. En el equipo, abrir la cola de impresión y cancelar todos los trabajos pendientes, empezando por el más antiguo.\n4. Reiniciar el servicio de cola de impresión: abrir 'services.msc', buscar 'Cola de impresión' (Print Spooler) y elegir 'Reiniciar'.\n5. Apagar la impresora, esperar 30 segundos y volver a encenderla.\n6. Enviar una página de prueba desde 'Impresoras y escáneres'.\n7. Si solo falla en un equipo, eliminar la impresora, volver a agregarla y reinstalar el controlador; si falla en todos, escalar a soporte de impresión."
+  },
+  {
+    "topic": "monitor-sin-senal",
+    "title": "Monitor sin señal",
+    "problem": "El monitor no muestra imagen aunque el equipo está encendido, o el segundo monitor deja de ser detectado.",
+    "symptoms": "El monitor muestra el mensaje 'Sin señal' aunque el equipo está encendido. El segundo monitor dejó de detectarse después de reiniciar. La pantalla externa conectada por HDMI se queda en negro.",
+    "cause": "Cable de video (HDMI, DisplayPort o VGA) suelto o dañado, entrada de video del monitor mal seleccionada, cable conectado a la salida de video equivocada del equipo, configuración de pantallas en Windows que no extiende al segundo monitor, o controlador de video con fallas.",
+    "solution": "1. Verificar que el monitor esté encendido y que el cable de video esté firmemente conectado en ambos extremos.\n2. Con el botón 'Input' o 'Source' del monitor, seleccionar la entrada correcta (HDMI, DisplayPort o VGA).\n3. En equipos de escritorio con tarjeta de video dedicada, conectar el cable a la salida de la tarjeta y no a la de la placa base.\n4. Probar con otro cable o con otro puerto del equipo.\n5. Presionar Windows + P y elegir 'Extender' o 'Duplicar'; luego en 'Configuración de pantalla' pulsar 'Detectar'.\n6. Si se usa una base de expansión, desconectarla y conectar el monitor directamente al portátil para descartar la base.\n7. Actualizar o reinstalar el controlador de video y reiniciar; si persiste, probar el monitor en otro equipo y escalar a hardware."
+  },
+  {
+    "topic": "perifericos-no-responden",
+    "title": "Teclado o mouse no responden",
+    "problem": "El teclado o el mouse dejan de funcionar o se desconectan de forma intermitente.",
+    "symptoms": "El teclado USB no escribe nada y no enciende sus luces. El mouse inalámbrico dejó de responder aunque se cambiaron las pilas. Teclado y mouse se desconectan solos cada cierto tiempo.",
+    "cause": "Puerto USB dañado o sin energía, receptor inalámbrico desconectado o fuera de alcance, interferencia de otros dispositivos inalámbricos, ahorro de energía que suspende los puertos USB, o controlador del dispositivo dañado.",
+    "solution": "1. Desconectar el teclado o el mouse y conectarlo en otro puerto USB, preferiblemente uno trasero del equipo y sin concentrador (hub).\n2. En dispositivos inalámbricos, revisar que el receptor USB esté conectado, acercarlo al dispositivo y volver a emparejarlo si el fabricante lo permite.\n3. Cambiar las pilas por unas nuevas y verificar que el interruptor del dispositivo esté encendido.\n4. Probar el dispositivo en otro equipo para saber si el fallo es del periférico o del computador.\n5. En el Administrador de dispositivos, desinstalar el dispositivo y reiniciar para que Windows lo reinstale.\n6. Si se desconectan solos, desactivar en las propiedades de los 'Concentradores raíz USB' la opción de apagar el dispositivo para ahorrar energía.\n7. Si el periférico no funciona en ningún equipo, solicitar su reemplazo."
+  },
+  {
+    "topic": "equipo-sobrecalentamiento",
+    "title": "Sobrecalentamiento y apagados inesperados",
+    "problem": "El equipo se calienta en exceso y se apaga o reinicia solo, normalmente con uso prolongado o con programas pesados.",
+    "symptoms": "El portátil se calienta mucho y se apaga solo después de una hora de uso. El ventilador hace mucho ruido y el equipo se reinicia sin aviso. El computador se apaga al abrir programas pesados.",
+    "cause": "Rejillas de ventilación obstruidas o polvo acumulado en el ventilador y el disipador, uso del portátil sobre superficies blandas que tapan la ventilación, ventilador dañado, pasta térmica seca, o procesos que mantienen el procesador al 100 % de uso.",
+    "solution": "1. Colocar el equipo sobre una superficie dura y plana, sin tapar las rejillas de ventilación; no usar el portátil sobre cojines o mantas.\n2. En el Administrador de tareas, revisar si algún proceso mantiene el procesador cerca del 100 % y cerrarlo o reportarlo.\n3. Verificar que el ventilador gire; si hace ruidos anormales o no gira, programar revisión de hardware.\n4. Solicitar a soporte una limpieza interna del ventilador y del disipador (no abrir el equipo por cuenta propia).\n5. Mientras tanto, usar un plan de energía 'Equilibrado' y evitar ejecutar varios programas pesados a la vez.\n6. Revisar en el Visor de eventos si los apagados aparecen como 'Kernel-Power' (apagado inesperado) para documentar el caso.\n7. Si se apaga incluso con poco uso, escalar a hardware para revisar el cambio de pasta térmica o del ventilador."
   }
 ]
