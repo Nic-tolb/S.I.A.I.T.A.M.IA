@@ -43,6 +43,12 @@ public class GlobalExceptionHandler {
         return respond(HttpStatus.NOT_FOUND, ex.getMessage(), req);
     }
 
+    /** Valid request that clashes with existing data (duplicates, records still in use...). */
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<ApiError> conflict(ConflictException ex, HttpServletRequest req) {
+        return respond(HttpStatus.CONFLICT, ex.getMessage(), req);
+    }
+
     @ExceptionHandler(AiServiceException.class)
     public ResponseEntity<ApiError> aiService(AiServiceException ex, HttpServletRequest req) {
         return respond(HttpStatus.BAD_GATEWAY, ex.getMessage(), req);
