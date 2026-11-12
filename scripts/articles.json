@@ -1,0 +1,202 @@
+[
+  {
+    "topic": "sin-internet",
+    "title": "Sin acceso a internet en el equipo",
+    "problem": "El equipo no tiene acceso a internet: ninguna página web carga, aunque el equipo está encendido y conectado a la red.",
+    "symptoms": "El icono de red muestra 'Sin internet' o un triángulo de advertencia aunque el cable de red está conectado. Ningún sitio web carga en el navegador. En algunos casos las carpetas compartidas de la red sí abren, pero internet no. Puede afectar a un solo equipo o a todo un piso u oficina.",
+    "cause": "Configuración IP inválida (dirección 169.254.x.x porque el servidor DHCP no respondió), cable de red o puerto del switch dañado, adaptador de red deshabilitado, proxy mal configurado en el equipo o una caída del enlace de internet o del router del piso.",
+    "solution": "1. Verificar si el problema afecta solo a este equipo o a varios del mismo piso; si afecta a varios, escalar a redes como posible caída del enlace o del switch.\n2. Revisar que el cable de red esté bien conectado en ambos extremos y que las luces del puerto de red parpadeen; probar con otro cable u otro puerto.\n3. Abrir el símbolo del sistema y ejecutar 'ipconfig /all'. Si la dirección IP empieza por 169.254, el equipo no obtuvo dirección del servidor DHCP.\n4. Ejecutar 'ipconfig /release' y luego 'ipconfig /renew' para pedir una nueva dirección IP.\n5. Ejecutar 'ping 8.8.8.8': si responde pero las páginas no cargan, revisar la configuración de DNS y de proxy del navegador.\n6. Deshabilitar y volver a habilitar el adaptador de red desde 'Conexiones de red', o reiniciar el equipo.\n7. Si persiste, registrar la dirección MAC del equipo y escalar al equipo de redes."
+  },
+  {
+    "topic": "wifi-intermitente",
+    "title": "Conexión Wi-Fi intermitente",
+    "problem": "La conexión Wi-Fi del equipo se pierde y se recupera de forma repetida, interrumpiendo el trabajo y las videollamadas.",
+    "symptoms": "El Wi-Fi se desconecta cada pocos minutos, sobre todo en salas de reuniones o zonas alejadas. La señal inalámbrica aparece y desaparece y las videollamadas se cortan o se congelan. El portátil pierde la conexión Wi-Fi al moverse entre oficinas y tarda en reconectarse.",
+    "cause": "Señal débil o interferencia en la zona, demasiados usuarios conectados al mismo punto de acceso, controlador (driver) de la tarjeta inalámbrica desactualizado, o la opción de ahorro de energía que apaga el adaptador Wi-Fi para ahorrar batería.",
+    "solution": "1. Comprobar la intensidad de la señal en el lugar donde ocurre; si es baja, acercarse al punto de acceso o usar cable de red mientras se revisa.\n2. Preguntar si otros usuarios de la misma zona tienen el problema; si es así, reportarlo a redes indicando la ubicación exacta (posible saturación o falla del punto de acceso).\n3. En el Administrador de dispositivos, abrir las propiedades del adaptador inalámbrico y en 'Administración de energía' desmarcar 'Permitir que el equipo apague este dispositivo para ahorrar energía'.\n4. Actualizar el controlador de la tarjeta Wi-Fi desde el sitio del fabricante o desde Windows Update.\n5. Olvidar la red Wi-Fi corporativa y volver a conectarse con las credenciales correctas.\n6. Si el portátil pierde la conexión al moverse entre oficinas, ajustar la 'Agresividad de itinerancia' (roaming) del adaptador a un valor medio o alto.\n7. Si persiste, escalar a redes con la hora y el lugar de las desconexiones."
+  },
+  {
+    "topic": "vpn-no-conecta",
+    "title": "La VPN corporativa no conecta",
+    "problem": "El usuario que trabaja fuera de la oficina no logra conectarse a la VPN corporativa, o se conecta pero no puede usar los sistemas internos.",
+    "symptoms": "Desde casa la VPN se queda en 'Conectando' y nunca termina. La VPN muestra error de autenticación aunque la contraseña es correcta. Después de conectar la VPN no se puede abrir ningún sistema interno ni carpeta de la red.",
+    "cause": "Contraseña de dominio expirada o cuenta bloqueada, cliente VPN desactualizado, red doméstica o pública que bloquea los puertos de la VPN, hora del equipo desincronizada que invalida el certificado, o DNS internos que no se aplican al conectarse.",
+    "solution": "1. Confirmar que el equipo tiene internet sin la VPN abriendo cualquier sitio público.\n2. Verificar que la contraseña de dominio no haya expirado y que la cuenta no esté bloqueada; si lo está, seguir el procedimiento de cuenta bloqueada.\n3. Revisar que la fecha y la hora del equipo sean correctas; una hora incorrecta provoca errores de certificado y de autenticación.\n4. Cerrar por completo el cliente VPN, volver a abrirlo y conectar de nuevo; si sigue en 'Conectando', reiniciar el equipo.\n5. Probar desde otra red (por ejemplo, compartir datos del celular); si así conecta, la red doméstica o pública está bloqueando la VPN.\n6. Si conecta pero los sistemas internos no abren, ejecutar 'ipconfig /flushdns' y probar el acceso por nombre y por dirección IP.\n7. Actualizar el cliente VPN a la versión publicada por TI y, si persiste, escalar con una captura del mensaje de error."
+  },
+  {
+    "topic": "red-lenta",
+    "title": "Red lenta y alta latencia",
+    "problem": "La red funciona pero con mucha lentitud: las páginas, las descargas y las videollamadas tardan mucho o se congelan.",
+    "symptoms": "Las páginas tardan más de un minuto en cargar, a veces en toda un área como ventas. La descarga de archivos desde el servidor es extremadamente lenta. Las videollamadas se congelan, se pixelan o tienen retraso por la lentitud de la red.",
+    "cause": "Saturación del ancho de banda por descargas, copias de seguridad o actualizaciones masivas; un equipo infectado o una aplicación que consume la red; puerto del switch negociando a baja velocidad (10/100 Mbps) o en half-duplex; o problemas en el enlace del proveedor de internet.",
+    "solution": "1. Determinar el alcance: si solo un equipo está lento, revisar ese equipo; si es toda un área, escalar a redes como posible saturación.\n2. En el Administrador de tareas, pestaña 'Rendimiento' y 'Monitor de recursos', revisar qué procesos consumen la red en el equipo afectado.\n3. Ejecutar 'ping -t' hacia el servidor o la puerta de enlace y observar si los tiempos superan 100 ms o hay paquetes perdidos.\n4. Revisar la velocidad del adaptador de red: si muestra 100 Mbps o menos en un puerto gigabit, cambiar el cable o el puerto.\n5. Pausar descargas grandes, sincronizaciones en la nube o actualizaciones mientras se trabaja.\n6. Ejecutar un análisis completo de antivirus para descartar software malicioso que consuma la red.\n7. Si afecta a varios usuarios, reportar a redes la hora, el área y los resultados del ping para revisar el enlace y el switch."
+  },
+  {
+    "topic": "dns-no-resuelve",
+    "title": "Sitios internos no cargan por fallo de DNS",
+    "problem": "Los sitios o sistemas internos no abren usando su nombre, aunque la red y la conexión funcionan.",
+    "symptoms": "La intranet no abre por nombre, pero sí escribiendo la dirección IP. El navegador muestra 'No se puede encontrar el servidor' en los sitios internos. Algunos sitios abren y otros no, con el error DNS_PROBE_FINISHED_NXDOMAIN.",
+    "cause": "El equipo usa servidores DNS públicos o incorrectos en lugar de los DNS corporativos, la caché de DNS tiene registros desactualizados, el servidor DNS interno falla, o el registro DNS del sistema interno fue cambiado o eliminado.",
+    "solution": "1. Ejecutar 'nslookup nombre-del-sitio' en el símbolo del sistema para ver qué servidor DNS responde y si resuelve el nombre.\n2. Ejecutar 'ipconfig /all' y comprobar que los servidores DNS configurados son los corporativos y no otros (por ejemplo 8.8.8.8).\n3. Si los DNS están configurados a mano, cambiar el adaptador a 'Obtener la dirección del servidor DNS automáticamente'.\n4. Limpiar la caché de DNS con 'ipconfig /flushdns' y cerrar y abrir el navegador.\n5. Si se usa VPN, desconectar y volver a conectar para que se apliquen los DNS internos.\n6. Si varios usuarios no resuelven el mismo sitio, escalar a infraestructura indicando el nombre exacto que falla, porque el problema está en el servidor DNS o en el registro del sitio."
+  },
+  {
+    "topic": "equipo-no-enciende",
+    "title": "El equipo no enciende",
+    "problem": "El computador de escritorio o el portátil no enciende al presionar el botón de encendido, o enciende pero no arranca el sistema.",
+    "symptoms": "El computador de escritorio no enciende al presionar el botón: no hay luces ni ruido de ventiladores. El portátil no enciende aunque está conectado al cargador. El equipo enciende las luces pero la pantalla queda negra y no arranca.",
+    "cause": "Falta de energía en la toma o en la regleta, cable de poder o cargador dañado, batería del portátil totalmente descargada, fuente de poder averiada, carga estática acumulada, o memoria RAM mal asentada cuando hay luces pero no imagen.",
+    "solution": "1. Comprobar que la toma eléctrica funciona conectando otro aparato, y que la regleta o el UPS esté encendido.\n2. Revisar que el cable de poder o el cargador estén bien conectados; en portátiles, verificar si la luz del cargador enciende y probar con otro cargador compatible.\n3. Descargar la energía estática: desconectar el cable de poder (y la batería si es extraíble), mantener presionado el botón de encendido 30 segundos y volver a conectar.\n4. En portátiles muy descargados, dejarlos conectados al cargador al menos 30 minutos antes de intentar encender.\n5. Si enciende luces pero la pantalla queda negra, conectar un monitor externo para descartar falla de pantalla.\n6. Si sigue sin arrancar, no abrir el equipo: registrar el número de serie y escalar a soporte de hardware para revisar la fuente de poder, la memoria o la placa base."
+  },
+  {
+    "topic": "impresora-no-imprime",
+    "title": "La impresora de red no imprime",
+    "problem": "Los documentos enviados a la impresora de red de la oficina no se imprimen o se quedan detenidos en la cola de impresión.",
+    "symptoms": "Los documentos quedan en cola y la impresora del piso no imprime. La impresora aparece como 'Sin conexión' en todos los equipos. Se envía a imprimir y no sale nada, sin ningún mensaje de error. Puede haber trabajos atascados en la cola de impresión que bloquean a los demás.",
+    "cause": "Un trabajo dañado que bloquea la cola de impresión, servicio de cola de impresión (Spooler) detenido en el equipo, impresora apagada, sin papel, con atasco de papel o sin tóner, impresora que cambió de dirección IP, o controlador de la impresora dañado.",
+    "solution": "1. Revisar físicamente la impresora: que esté encendida, sin mensajes de error en su panel, con papel, sin atasco de papel y con tóner.\n2. Si aparece 'Sin conexión' en todos los equipos, imprimir la página de configuración desde el panel de la impresora y verificar su dirección IP y que el cable de red esté conectado.\n3. En el equipo, abrir la cola de impresión y cancelar todos los trabajos pendientes, empezando por el más antiguo.\n4. Reiniciar el servicio de cola de impresión: abrir 'services.msc', buscar 'Cola de impresión' (Print Spooler) y elegir 'Reiniciar'.\n5. Apagar la impresora, esperar 30 segundos y volver a encenderla.\n6. Enviar una página de prueba desde 'Impresoras y escáneres'.\n7. Si solo falla en un equipo, eliminar la impresora, volver a agregarla y reinstalar el controlador; si falla en todos, escalar a soporte de impresión."
+  },
+  {
+    "topic": "monitor-sin-senal",
+    "title": "Monitor sin señal",
+    "problem": "El monitor no muestra imagen aunque el equipo está encendido, o el segundo monitor deja de ser detectado.",
+    "symptoms": "El monitor muestra el mensaje 'Sin señal' aunque el equipo está encendido. El segundo monitor dejó de detectarse después de reiniciar. La pantalla externa conectada por HDMI se queda en negro.",
+    "cause": "Cable de video (HDMI, DisplayPort o VGA) suelto o dañado, entrada de video del monitor mal seleccionada, cable conectado a la salida de video equivocada del equipo, configuración de pantallas en Windows que no extiende al segundo monitor, o controlador de video con fallas.",
+    "solution": "1. Verificar que el monitor esté encendido y que el cable de video esté firmemente conectado en ambos extremos.\n2. Con el botón 'Input' o 'Source' del monitor, seleccionar la entrada correcta (HDMI, DisplayPort o VGA).\n3. En equipos de escritorio con tarjeta de video dedicada, conectar el cable a la salida de la tarjeta y no a la de la placa base.\n4. Probar con otro cable o con otro puerto del equipo.\n5. Presionar Windows + P y elegir 'Extender' o 'Duplicar'; luego en 'Configuración de pantalla' pulsar 'Detectar'.\n6. Si se usa una base de expansión, desconectarla y conectar el monitor directamente al portátil para descartar la base.\n7. Actualizar o reinstalar el controlador de video y reiniciar; si persiste, probar el monitor en otro equipo y escalar a hardware."
+  },
+  {
+    "topic": "perifericos-no-responden",
+    "title": "Teclado o mouse no responden",
+    "problem": "El teclado o el mouse dejan de funcionar o se desconectan de forma intermitente.",
+    "symptoms": "El teclado USB no escribe nada y no enciende sus luces. El mouse inalámbrico dejó de responder aunque se cambiaron las pilas. Teclado y mouse se desconectan solos cada cierto tiempo.",
+    "cause": "Puerto USB dañado o sin energía, receptor inalámbrico desconectado o fuera de alcance, interferencia de otros dispositivos inalámbricos, ahorro de energía que suspende los puertos USB, o controlador del dispositivo dañado.",
+    "solution": "1. Desconectar el teclado o el mouse y conectarlo en otro puerto USB, preferiblemente uno trasero del equipo y sin concentrador (hub).\n2. En dispositivos inalámbricos, revisar que el receptor USB esté conectado, acercarlo al dispositivo y volver a emparejarlo si el fabricante lo permite.\n3. Cambiar las pilas por unas nuevas y verificar que el interruptor del dispositivo esté encendido.\n4. Probar el dispositivo en otro equipo para saber si el fallo es del periférico o del computador.\n5. En el Administrador de dispositivos, desinstalar el dispositivo y reiniciar para que Windows lo reinstale.\n6. Si se desconectan solos, desactivar en las propiedades de los 'Concentradores raíz USB' la opción de apagar el dispositivo para ahorrar energía.\n7. Si el periférico no funciona en ningún equipo, solicitar su reemplazo."
+  },
+  {
+    "topic": "equipo-sobrecalentamiento",
+    "title": "Sobrecalentamiento y apagados inesperados",
+    "problem": "El equipo se calienta en exceso y se apaga o reinicia solo, normalmente con uso prolongado o con programas pesados.",
+    "symptoms": "El portátil se calienta mucho y se apaga solo después de una hora de uso. El ventilador hace mucho ruido y el equipo se reinicia sin aviso. El computador se apaga al abrir programas pesados.",
+    "cause": "Rejillas de ventilación obstruidas o polvo acumulado en el ventilador y el disipador, uso del portátil sobre superficies blandas que tapan la ventilación, ventilador dañado, pasta térmica seca, o procesos que mantienen el procesador al 100 % de uso.",
+    "solution": "1. Colocar el equipo sobre una superficie dura y plana, sin tapar las rejillas de ventilación; no usar el portátil sobre cojines o mantas.\n2. En el Administrador de tareas, revisar si algún proceso mantiene el procesador cerca del 100 % y cerrarlo o reportarlo.\n3. Verificar que el ventilador gire; si hace ruidos anormales o no gira, programar revisión de hardware.\n4. Solicitar a soporte una limpieza interna del ventilador y del disipador (no abrir el equipo por cuenta propia).\n5. Mientras tanto, usar un plan de energía 'Equilibrado' y evitar ejecutar varios programas pesados a la vez.\n6. Revisar en el Visor de eventos si los apagados aparecen como 'Kernel-Power' (apagado inesperado) para documentar el caso.\n7. Si se apaga incluso con poco uso, escalar a hardware para revisar el cambio de pasta térmica o del ventilador."
+  },
+  {
+    "topic": "actualizacion-fallida",
+    "title": "Actualización de Windows fallida",
+    "problem": "Las actualizaciones de Windows no se instalan, fallan con un código de error o el equipo queda atascado durante el proceso.",
+    "symptoms": "Windows Update falla siempre con el error 0x80070002 u otro código similar. El equipo se queda reiniciando en 'Trabajando en las actualizaciones'. Después de actualizar, el sistema revierte los cambios al reiniciar con el mensaje 'No pudimos completar las actualizaciones'.",
+    "cause": "Archivos de actualización descargados dañados o incompletos, poco espacio libre en el disco, servicio de Windows Update con errores, archivos del sistema dañados, o conflicto con un controlador o un antivirus.",
+    "solution": "1. Comprobar que haya al menos 20 GB libres en el disco C: y liberar espacio con 'Liberador de espacio en disco' si hace falta.\n2. Ejecutar el 'Solucionador de problemas de Windows Update' desde Configuración.\n3. Limpiar la caché de actualizaciones: detener los servicios con 'net stop wuauserv' y 'net stop bits', borrar el contenido de C:\\Windows\\SoftwareDistribution\\Download y volver a iniciarlos con 'net start wuauserv' y 'net start bits'.\n4. Reparar los archivos del sistema ejecutando como administrador 'DISM /Online /Cleanup-Image /RestoreHealth' y después 'sfc /scannow'.\n5. Reiniciar e intentar la actualización de nuevo.\n6. Si el equipo queda reiniciando en 'Trabajando en las actualizaciones' más de una hora, apagarlo, encender y dejar que revierta los cambios; luego repetir los pasos anteriores.\n7. Si el error continúa, anotar el código exacto y escalar a soporte de sistemas operativos."
+  },
+  {
+    "topic": "equipo-lento",
+    "title": "Equipo lento al iniciar y al trabajar",
+    "problem": "El computador tarda mucho en iniciar y responde con lentitud durante el trabajo diario.",
+    "symptoms": "El computador tarda más de diez minutos en iniciar sesión. Todo se congela al abrir varias aplicaciones a la vez. El disco aparece al 100 % de uso en el Administrador de tareas y el equipo no responde.",
+    "cause": "Demasiados programas que se ejecutan al inicio, poca memoria RAM para la carga de trabajo, disco duro mecánico lento o con fallas, poco espacio libre en disco, actualizaciones o análisis de antivirus en segundo plano, o software malicioso.",
+    "solution": "1. Abrir el Administrador de tareas y revisar qué procesos usan más CPU, memoria y disco.\n2. En la pestaña 'Inicio', deshabilitar los programas que no son necesarios al arrancar.\n3. Liberar espacio en disco: vaciar la papelera, borrar archivos temporales con 'Liberador de espacio en disco' y dejar al menos un 15 % libre.\n4. Reiniciar el equipo al menos una vez al día en lugar de solo suspenderlo.\n5. Verificar que no haya actualizaciones pendientes ni un análisis del antivirus en curso.\n6. Ejecutar un análisis completo de antivirus.\n7. Si el disco sigue al 100 % o la memoria se agota con el uso normal, escalar a hardware para evaluar más memoria RAM o el cambio a un disco de estado sólido (SSD)."
+  },
+  {
+    "topic": "pantalla-azul",
+    "title": "Pantalla azul (BSOD)",
+    "problem": "El equipo muestra una pantalla azul con un error crítico y se reinicia, en ocasiones varias veces al día.",
+    "symptoms": "El equipo muestra pantalla azul con un código de detención como MEMORY_MANAGEMENT, IRQL_NOT_LESS_OR_EQUAL o CRITICAL_PROCESS_DIED. Aparece una pantalla azul varias veces al día y el equipo se reinicia. Después de conectar la base de expansión o un dispositivo nuevo aparece pantalla azul.",
+    "cause": "Controladores incompatibles o dañados (especialmente de video, red o de la base de expansión), memoria RAM defectuosa, archivos del sistema dañados, una actualización reciente con problemas o fallas del disco.",
+    "solution": "1. Anotar el código de detención que aparece en la pantalla azul o tomarle una foto.\n2. Si comenzó tras conectar un dispositivo o una base de expansión, desconectarlo y comprobar si el error desaparece; luego actualizar el controlador o el firmware de ese dispositivo.\n3. Si comenzó tras instalar un controlador o una actualización, desinstalarlo o revertir el controlador desde el Administrador de dispositivos.\n4. Ejecutar como administrador 'sfc /scannow' y 'DISM /Online /Cleanup-Image /RestoreHealth' para reparar archivos del sistema.\n5. Si el código es MEMORY_MANAGEMENT, ejecutar el 'Diagnóstico de memoria de Windows' (mdsched.exe) para revisar la RAM.\n6. Revisar el estado del disco con 'chkdsk C: /scan'.\n7. Si las pantallas azules continúan, escalar a hardware con los códigos registrados y las fechas en que ocurrieron."
+  },
+  {
+    "topic": "instalacion-bloqueada",
+    "title": "No se puede instalar software",
+    "problem": "El usuario no puede instalar un programa que necesita para su trabajo porque la instalación pide permisos o es bloqueada.",
+    "symptoms": "Al instalar un programa pide credenciales de administrador. La instalación se detiene con el mensaje 'Bloqueado por la política del sistema' o 'Su administrador ha bloqueado esta aplicación'. El instalador se cierra sin mostrar ningún error.",
+    "cause": "Los usuarios no tienen permisos de administrador por política de seguridad, el software no está en la lista de aplicaciones aprobadas, el antivirus o SmartScreen bloquea el instalador, o el instalador está dañado o no es compatible con el sistema.",
+    "solution": "1. No intentar saltarse la restricción ni usar credenciales de otra persona.\n2. Verificar si el programa está disponible en el portal de autoservicio de software (Centro de software); si lo está, instalarlo desde allí.\n3. Si no está disponible, registrar una solicitud indicando el nombre del programa, la versión y para qué se necesita, para que TI evalúe su aprobación.\n4. Comprobar que el instalador se descargó del sitio oficial del fabricante y que corresponde a la versión del sistema (64 bits).\n5. Si el instalador se cierra sin error, descargarlo de nuevo, porque puede estar dañado.\n6. Si el antivirus bloqueó el instalador, no desactivarlo; reportarlo a seguridad para que lo revisen.\n7. Una vez aprobado, el equipo de TI realiza la instalación con una cuenta autorizada."
+  },
+  {
+    "topic": "alerta-antivirus",
+    "title": "Alerta de antivirus o archivo en cuarentena",
+    "problem": "El antivirus muestra una alerta de amenaza, bloquea una aplicación o envía un archivo de trabajo a cuarentena.",
+    "symptoms": "El antivirus muestra una alerta de amenaza al abrir un archivo adjunto. Un archivo de trabajo fue enviado a cuarentena y ya no se puede abrir. El antivirus bloquea una aplicación que se usa todos los días.",
+    "cause": "El archivo contiene software malicioso real (por ejemplo, un adjunto de correo de phishing), o se trata de un falso positivo por macros, firmas desactualizadas o un programa interno sin firma digital.",
+    "solution": "1. No abrir de nuevo el archivo ni restaurarlo por cuenta propia, y no desactivar el antivirus.\n2. Si el archivo llegó por correo de un remitente desconocido o inesperado, no responder ni reenviar el mensaje y reportarlo como phishing.\n3. Tomar una captura de la alerta con el nombre de la amenaza, la ruta del archivo y la hora.\n4. Reportar el caso a seguridad informática con la captura, indicando si el archivo o la aplicación son necesarios para el trabajo.\n5. Seguridad revisa el archivo; si es un falso positivo, lo restaura desde cuarentena o agrega una exclusión autorizada para la aplicación.\n6. Si era una amenaza real, ejecutar un análisis completo del equipo y cambiar la contraseña si se ingresaron credenciales en algún enlace sospechoso.\n7. Mientras se revisa, solicitar una copia limpia del archivo a su autor original."
+  },
+  {
+    "topic": "error-ejecucion-app",
+    "title": "Error de ejecución en la aplicación de facturación",
+    "problem": "La aplicación de escritorio de facturación muestra un error de ejecución y se cierra al realizar ciertas operaciones o al iniciar.",
+    "symptoms": "La aplicación de facturación se cierra con un error de ejecución al generar reportes. Aparece 'Error inesperado en tiempo de ejecución' al guardar una factura. La aplicación muestra una excepción no controlada y se cierra al iniciar.",
+    "cause": "Componentes de ejecución faltantes o dañados (.NET Framework o Visual C++ Redistributable), archivos de configuración o caché locales dañados, versión de la aplicación desactualizada respecto al servidor, falta de permisos sobre la carpeta de la aplicación o datos de entrada inválidos en el registro que se procesa.",
+    "solution": "1. Anotar el mensaje completo del error, la operación que se estaba haciendo y la hora, y tomar una captura.\n2. Cerrar la aplicación por completo (también desde el Administrador de tareas) y volver a abrirla.\n3. Verificar que la versión instalada sea la misma que la publicada por TI; si no, actualizarla.\n4. Borrar la caché y los archivos temporales de la aplicación en la carpeta de datos del usuario (%LOCALAPPDATA%) siguiendo el procedimiento de la aplicación.\n5. Reparar o reinstalar los componentes .NET Framework y Visual C++ Redistributable requeridos.\n6. Revisar en el Visor de eventos, en 'Registros de Windows > Aplicación', el error asociado para identificar el módulo que falla.\n7. Si solo ocurre con una factura o un reporte concreto, revisar los datos de ese registro; si persiste, escalar al equipo de la aplicación con la captura y el registro del Visor de eventos."
+  },
+  {
+    "topic": "app-web-error-500",
+    "title": "Error 500 en aplicación web interna",
+    "problem": "Un sistema o portal web interno responde con un error del servidor y no permite completar la operación.",
+    "symptoms": "El portal de solicitudes muestra 'Error 500 - Internal Server Error'. Al enviar un formulario en el sistema web aparece un error del servidor. El módulo de inventario web no carga y devuelve error 500.",
+    "cause": "Un error en el servidor de la aplicación: falla de código ante ciertos datos, base de datos no disponible, servicio caído o reiniciándose, despliegue reciente con errores o falta de recursos en el servidor. Un error 500 no se origina en el equipo del usuario.",
+    "solution": "1. Recargar la página después de un minuto, por si el servicio se estaba reiniciando.\n2. Comprobar si otros usuarios tienen el mismo error en el mismo módulo; si es general, se trata de una falla del servidor.\n3. Probar en otro navegador o en una ventana privada para descartar problemas de sesión o de caché.\n4. Si el error ocurre solo al enviar un formulario concreto, revisar los datos ingresados (caracteres especiales, archivos adjuntos muy grandes o campos vacíos) e intentarlo de nuevo.\n5. Registrar la URL, la hora exacta, la acción realizada y una captura del error.\n6. Escalar al equipo responsable de la aplicación con esa información para que revise los registros del servidor.\n7. No repetir muchas veces la misma operación, para evitar registros duplicados."
+  },
+  {
+    "topic": "correo-no-sincroniza",
+    "title": "El correo no sincroniza",
+    "problem": "El cliente de correo no recibe mensajes nuevos o no envía los mensajes, y no coincide con lo que se ve en otros dispositivos.",
+    "symptoms": "Outlook no recibe correos nuevos desde ayer. Los correos enviados se quedan en la bandeja de salida. El correo en el celular no se sincroniza con el del computador. La barra de estado de Outlook muestra 'Desconectado' o 'Intentando conectar'.",
+    "cause": "Outlook en modo 'Trabajar sin conexión', perfil de Outlook o archivo de datos (OST) dañado, buzón lleno, contraseña cambiada que no se actualizó en el dispositivo, o un adjunto demasiado grande que bloquea la bandeja de salida.",
+    "solution": "1. Verificar en Outlook, pestaña 'Enviar y recibir', que la opción 'Trabajar sin conexión' esté desactivada.\n2. Revisar el tamaño del buzón; si está lleno, archivar o eliminar correos con adjuntos grandes y vaciar 'Elementos eliminados'.\n3. Si un correo se queda en la bandeja de salida, abrirlo, quitar adjuntos muy grandes o eliminarlo y volver a enviarlo.\n4. Comprobar el acceso desde el correo web; si allí llegan los correos, el problema está en el equipo o en el dispositivo.\n5. Cerrar Outlook y abrirlo de nuevo; si sigue sin sincronizar, reparar la cuenta en 'Configuración de la cuenta' o crear un perfil nuevo de Outlook.\n6. En el celular, eliminar la cuenta de correo y agregarla de nuevo con la contraseña actual.\n7. Si el correo web tampoco funciona, escalar a mensajería."
+  },
+  {
+    "topic": "archivo-office-corrupto",
+    "title": "Archivo de Office dañado o que no abre",
+    "problem": "Un documento de Word, Excel o PowerPoint no abre, abre en blanco o muestra que está dañado.",
+    "symptoms": "Un archivo de Excel muestra 'El archivo está dañado y no se puede abrir'. Un documento de Word se cerró sin guardar y ahora no abre. La presentación de PowerPoint abre en blanco.",
+    "cause": "El archivo se dañó al cerrarse la aplicación de forma inesperada, por un corte de energía, por una copia incompleta desde una memoria USB o la red, por un problema de sincronización en la nube, o porque Office lo bloquea en 'Vista protegida'.",
+    "solution": "1. Hacer una copia del archivo antes de cualquier intento de recuperación.\n2. Abrir la aplicación, ir a 'Archivo > Abrir', seleccionar el archivo y en la flecha del botón 'Abrir' elegir 'Abrir y reparar'.\n3. Si el documento se cerró sin guardar, buscar en 'Archivo > Información > Administrar documento > Recuperar documentos no guardados'.\n4. Si el archivo está en OneDrive, SharePoint o una carpeta de red, restaurar una versión anterior desde 'Historial de versiones' o 'Versiones anteriores'.\n5. Si abre en blanco o en 'Vista protegida', pulsar 'Habilitar edición' o revisar en Propiedades si el archivo está bloqueado y desbloquearlo.\n6. En Excel, probar abrir el archivo en otro equipo o copiar los datos a un libro nuevo.\n7. Si no se recupera, solicitar la restauración desde la copia de seguridad indicando la ruta del archivo y la última fecha en que funcionó."
+  },
+  {
+    "topic": "licencia-office",
+    "title": "Licencia de Office expirada o sin activar",
+    "problem": "Las aplicaciones de Office indican que el producto no tiene licencia o no está activado y limitan la edición de documentos.",
+    "symptoms": "Office muestra 'Producto sin licencia' y no permite editar. Word pide iniciar sesión para activar la licencia cada vez que se abre. La barra superior de Excel dice 'Error de activación del producto'.",
+    "cause": "La sesión de Office se inició con una cuenta personal en lugar de la corporativa, la licencia no está asignada al usuario, las credenciales guardadas están vencidas, o el equipo no pudo validar la activación por falta de conexión durante varios días.",
+    "solution": "1. Abrir cualquier aplicación de Office, ir a 'Archivo > Cuenta' y revisar con qué cuenta está iniciada la sesión.\n2. Si aparece una cuenta personal, cerrar sesión e iniciar con la cuenta corporativa.\n3. Verificar que el equipo tenga internet y pulsar 'Actualizar licencia' en la misma pantalla.\n4. Cerrar todas las aplicaciones de Office y volver a abrirlas.\n5. Si sigue pidiendo activación, borrar las credenciales de Office guardadas en el 'Administrador de credenciales' de Windows e iniciar sesión de nuevo.\n6. Si el mensaje indica que la cuenta no tiene licencia asignada, solicitar a TI la asignación de la licencia de Office.\n7. Como último paso, ejecutar la 'Reparación en línea' de Office desde 'Aplicaciones instaladas'."
+  },
+  {
+    "topic": "cuenta-bloqueada",
+    "title": "Cuenta bloqueada o contraseña olvidada",
+    "problem": "El usuario no puede iniciar sesión porque su cuenta está bloqueada, olvidó la contraseña o la contraseña expiró.",
+    "symptoms": "La cuenta quedó bloqueada después de varios intentos fallidos. No recuerdo la contraseña y no puedo iniciar sesión en el equipo. La contraseña expiró y el sistema no permite cambiarla. Aparece 'La cuenta de referencia está bloqueada'.",
+    "cause": "Varios intentos con una contraseña incorrecta (a veces de un celular o equipo con la contraseña antigua guardada), contraseña expirada según la política de seguridad, u olvido de la contraseña tras un cambio reciente.",
+    "solution": "1. Esperar el tiempo de desbloqueo automático definido por la política (normalmente 15 a 30 minutos) antes de volver a intentar.\n2. Si olvidó la contraseña, usar el portal de autoservicio de restablecimiento de contraseña con la verificación registrada (celular o correo alternativo).\n3. Si no tiene acceso al autoservicio, solicitar el desbloqueo a la mesa de ayuda; el técnico debe verificar la identidad del usuario antes de restablecerla.\n4. Crear una contraseña nueva que cumpla la política (longitud mínima, mayúsculas, números y símbolos) y que no se haya usado antes.\n5. Actualizar la contraseña nueva en todos los dispositivos donde esté guardada: celular (correo), VPN y unidades de red mapeadas.\n6. Si la cuenta se bloquea de nuevo sin intentos del usuario, reportarlo, porque algún dispositivo sigue usando la contraseña antigua o puede haber un intento de acceso no autorizado."
+  },
+  {
+    "topic": "mfa-no-llega",
+    "title": "No llega el código de verificación (MFA)",
+    "problem": "El usuario no puede completar la autenticación en dos pasos porque el código de verificación no llega o no es aceptado.",
+    "symptoms": "No llega el código de verificación al celular para iniciar sesión. Cambié de teléfono y la aplicación de autenticación ya no tiene mi cuenta. El código de verificación siempre aparece como inválido.",
+    "cause": "Número de teléfono registrado desactualizado, mala señal o bloqueo de SMS de remitentes desconocidos, aplicación de autenticación no transferida al teléfono nuevo, o la hora del celular desincronizada, que hace que los códigos temporales no sean válidos.",
+    "solution": "1. Comprobar que el celular tenga señal o datos y revisar si los SMS de remitentes desconocidos están siendo filtrados.\n2. En la pantalla de inicio de sesión, elegir 'Usar otro método de verificación' si hay otro registrado (llamada, aplicación o correo alternativo).\n3. Si el código de la aplicación de autenticación aparece como inválido, activar en el celular la fecha y la hora automáticas.\n4. Si cambió de teléfono, solicitar a la mesa de ayuda que restablezca el método de autenticación; el técnico debe verificar la identidad del usuario.\n5. Tras el restablecimiento, registrar de nuevo la aplicación de autenticación en el teléfono nuevo y agregar un segundo método de respaldo.\n6. Revisar que el número de teléfono registrado esté actualizado en el perfil de seguridad."
+  },
+  {
+    "topic": "permisos-carpeta",
+    "title": "Sin permisos en carpeta compartida",
+    "problem": "El usuario no puede abrir o modificar archivos de una carpeta compartida de la red que necesita para su trabajo.",
+    "symptoms": "Al abrir la carpeta compartida de un área, por ejemplo finanzas, aparece 'Acceso denegado'. Puedo ver los archivos de la carpeta pero no puedo modificarlos: se abren como 'Solo lectura'. Después de cambiar de área perdí acceso a la carpeta del equipo.",
+    "cause": "El usuario no pertenece al grupo de seguridad que tiene permisos sobre la carpeta, tiene solo permisos de lectura, fue retirado del grupo tras un cambio de área, o los cambios de grupo aún no se aplicaron en su sesión.",
+    "solution": "1. Confirmar la ruta exacta de la carpeta (por ejemplo, \\\\servidor\\finanzas) y qué tipo de acceso necesita: lectura o modificación.\n2. Si fue agregado recientemente a un grupo, cerrar sesión y volver a iniciarla para que se apliquen los nuevos permisos.\n3. Si el archivo se abre como 'Solo lectura', comprobar que no esté abierto por otra persona ni marcado como de solo lectura en sus propiedades.\n4. Si no tiene el permiso, solicitar el acceso indicando la ruta y el tipo de permiso; la solicitud debe ser aprobada por el responsable de la carpeta o el jefe del área.\n5. TI agrega al usuario al grupo de seguridad correspondiente, sin dar permisos individuales.\n6. Después de un cambio de área, solicitar los accesos del área nueva; los del área anterior se retiran por seguridad."
+  },
+  {
+    "topic": "acceso-sistema-denegado",
+    "title": "Usuario sin acceso a un sistema interno",
+    "problem": "El usuario no puede entrar a un sistema interno (como nómina, ERP o compras) o a uno de sus módulos porque no está autorizado.",
+    "symptoms": "El sistema de nómina dice 'Usuario no autorizado' al iniciar sesión. Un usuario nuevo no tiene acceso al ERP aunque ya fue creado. Después del cambio de rol no puedo entrar al módulo de compras.",
+    "cause": "La cuenta existe pero no tiene asignado el rol o perfil del sistema, la solicitud de acceso no fue aprobada o no se ha procesado, el cambio de rol retiró permisos anteriores, o la cuenta del sistema no está vinculada a la cuenta corporativa.",
+    "solution": "1. Verificar que el usuario inicia sesión con la cuenta corporativa correcta.\n2. Confirmar con el jefe inmediato qué sistema y qué módulo o rol necesita para su cargo.\n3. Registrar la solicitud de acceso indicando el sistema, el módulo y el rol requerido; debe ser aprobada por el responsable del sistema o del área.\n4. Para usuarios nuevos, comprobar que la solicitud de alta en el sistema fue aprobada y procesada, no solo la creación de la cuenta corporativa.\n5. Tras un cambio de rol, solicitar los permisos del nuevo rol; los anteriores se retiran según la política de accesos.\n6. Una vez asignado el rol, cerrar sesión por completo y volver a entrar para que se apliquen los permisos.\n7. Si el acceso aprobado sigue sin funcionar, escalar al administrador del sistema con el usuario y el mensaje de error."
+  },
+  {
+    "topic": "sesion-expira",
+    "title": "La sesión se cierra constantemente",
+    "problem": "Un sistema o portal web cierra la sesión del usuario con demasiada frecuencia o no mantiene la sesión iniciada.",
+    "symptoms": "La sesión del portal se cierra cada pocos minutos y se pierde el trabajo. El sistema pide iniciar sesión de nuevo cada vez que cambio de pestaña. Después de iniciar sesión, el sistema vuelve a la pantalla de inicio.",
+    "cause": "El navegador bloquea o borra las cookies del sitio, la caché del navegador tiene datos de sesión antiguos, una extensión del navegador interfiere con la sesión, la hora del equipo es incorrecta, o el tiempo de inactividad configurado en el sistema es muy corto.",
+    "solution": "1. Comprobar que la fecha y la hora del equipo sean correctas y estén sincronizadas automáticamente.\n2. Borrar las cookies y la caché del navegador para el sitio afectado y volver a iniciar sesión.\n3. En la configuración de privacidad del navegador, permitir las cookies del sitio interno y desactivar la opción de borrar cookies al cerrar.\n4. Probar en una ventana privada o en otro navegador; si allí funciona, desactivar las extensiones una por una para encontrar la que causa el problema.\n5. No abrir el mismo sistema con dos cuentas distintas en el mismo navegador.\n6. Guardar el trabajo con frecuencia mientras se resuelve.\n7. Si le pasa a varios usuarios, escalar al equipo de la aplicación para revisar el tiempo de expiración de la sesión."
+  }
+]

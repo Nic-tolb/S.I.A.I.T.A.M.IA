@@ -8,6 +8,7 @@ Short recommendations, added as development progresses.
 - **Multilingual embedding model:** the content (articles, incidents) is in Spanish, so pick a model that handles Spanish well.
 - **Embed one structured text per article** (title, problem, symptoms, cause and solution with labels), so a query that only describes symptoms still matches.
 - **Qdrant point id = article id** and use *upsert*. This avoids duplicates without extra logic.
+- **Force HTTP/1.1 when calling n8n from Java.** The JDK `HttpClient` tries an HTTP/2 upgrade (`h2c`) by default and n8n never answers it on POST, so every call ends in a timeout. Mocked tests do not catch this: test once against the real n8n.
 - **No sources, no LLM:** if nothing passes the threshold, return `NO_RESULTS` without calling the model. This is the most reliable way to stop it from making things up.
 - **Double source validation:** even if Qdrant filters them, Spring Boot must confirm that every article exists and is active in the relational database.
 - **Justify the threshold with data:** try relevant and irrelevant questions, record the similarities and pick the cutoff based on evidence.

@@ -1,0 +1,338 @@
+{
+  "_comment": "Single source of topics for synthetic incidents and knowledge articles. 25 topics have an article (has_article=true); the rest have none, on purpose, for test 3. weight = relative frequency inside the whole dataset; resolution_hours = [min, max] hours to resolve.",
+  "categories": [
+    {
+      "name": "Conectividad",
+      "description": "Acceso a internet, red local, Wi-Fi y VPN",
+      "weight": 30,
+      "resolution_hours": [1, 24],
+      "topics": [
+        {
+          "key": "sin-internet",
+          "has_article": true,
+          "article_title": "Sin acceso a internet en el equipo",
+          "incident_titles": ["Sin acceso a internet", "No hay internet en el equipo"],
+          "descriptions": [
+            "No hay conexión a internet en el piso 3 desde esta mañana.",
+            "El equipo muestra 'Sin internet' aunque el cable de red está conectado.",
+            "Ningún sitio web carga, pero las carpetas compartidas de la red sí abren."
+          ]
+        },
+        {
+          "key": "wifi-intermitente",
+          "has_article": true,
+          "article_title": "Conexión Wi-Fi intermitente",
+          "incident_titles": ["Wi-Fi intermitente", "La red inalámbrica se desconecta"],
+          "descriptions": [
+            "El Wi-Fi se desconecta cada pocos minutos en la sala de reuniones.",
+            "La señal inalámbrica aparece y desaparece y las videollamadas se cortan.",
+            "El portátil pierde la conexión Wi-Fi al moverse entre oficinas."
+          ]
+        },
+        {
+          "key": "vpn-no-conecta",
+          "has_article": true,
+          "article_title": "La VPN corporativa no conecta",
+          "incident_titles": ["La VPN no conecta", "Error al conectar a la VPN"],
+          "descriptions": [
+            "Desde casa la VPN se queda en 'Conectando' y nunca termina.",
+            "La VPN muestra error de autenticación aunque la contraseña es correcta.",
+            "Después de conectar la VPN no se puede abrir ningún sistema interno."
+          ]
+        },
+        {
+          "key": "red-lenta",
+          "has_article": true,
+          "article_title": "Red lenta y alta latencia",
+          "incident_titles": ["Red muy lenta", "Lentitud al navegar"],
+          "descriptions": [
+            "Las páginas tardan más de un minuto en cargar en toda el área de ventas.",
+            "La descarga de archivos desde el servidor es extremadamente lenta.",
+            "Las videollamadas se congelan por la lentitud de la red."
+          ]
+        },
+        {
+          "key": "dns-no-resuelve",
+          "has_article": true,
+          "article_title": "Sitios internos no cargan por fallo de DNS",
+          "incident_titles": ["Sitios internos no cargan", "Error de DNS"],
+          "descriptions": [
+            "La intranet no abre por nombre, pero sí escribiendo la dirección IP.",
+            "El navegador muestra 'No se puede encontrar el servidor' en los sitios internos.",
+            "Algunos sitios abren y otros no, con error DNS_PROBE_FINISHED_NXDOMAIN."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hardware",
+      "description": "Equipos, periféricos e impresoras",
+      "weight": 20,
+      "resolution_hours": [4, 72],
+      "topics": [
+        {
+          "key": "equipo-no-enciende",
+          "has_article": true,
+          "article_title": "El equipo no enciende",
+          "incident_titles": ["El equipo no enciende", "PC sin energía"],
+          "descriptions": [
+            "El computador de escritorio no enciende al presionar el botón.",
+            "El portátil no enciende aunque está conectado al cargador.",
+            "El equipo enciende las luces pero la pantalla queda negra y no arranca."
+          ]
+        },
+        {
+          "key": "impresora-no-imprime",
+          "has_article": true,
+          "article_title": "La impresora de red no imprime",
+          "incident_titles": ["La impresora no imprime", "Trabajos atascados en la cola de impresión"],
+          "descriptions": [
+            "Los documentos quedan en cola y la impresora del segundo piso no imprime.",
+            "La impresora aparece como 'Sin conexión' en todos los equipos.",
+            "Se envía a imprimir y no sale nada, sin ningún mensaje de error."
+          ]
+        },
+        {
+          "key": "monitor-sin-senal",
+          "has_article": true,
+          "article_title": "Monitor sin señal",
+          "incident_titles": ["Monitor sin señal", "La pantalla externa no muestra imagen"],
+          "descriptions": [
+            "El monitor muestra 'Sin señal' aunque el equipo está encendido.",
+            "El segundo monitor dejó de detectarse después de reiniciar.",
+            "La pantalla externa conectada por HDMI se queda en negro."
+          ]
+        },
+        {
+          "key": "perifericos-no-responden",
+          "has_article": true,
+          "article_title": "Teclado o mouse no responden",
+          "incident_titles": ["El teclado no responde", "El mouse no funciona"],
+          "descriptions": [
+            "El teclado USB no escribe nada y no enciende sus luces.",
+            "El mouse inalámbrico dejó de responder aunque se cambiaron las pilas.",
+            "Teclado y mouse se desconectan solos cada cierto tiempo."
+          ]
+        },
+        {
+          "key": "equipo-sobrecalentamiento",
+          "has_article": true,
+          "article_title": "Sobrecalentamiento y apagados inesperados",
+          "incident_titles": ["El equipo se apaga solo", "Sobrecalentamiento del portátil"],
+          "descriptions": [
+            "El portátil se calienta mucho y se apaga solo después de una hora de uso.",
+            "El ventilador hace mucho ruido y el equipo se reinicia sin aviso.",
+            "El computador se apaga al abrir programas pesados."
+          ]
+        },
+        {
+          "key": "impresora-3d-no-calibra",
+          "has_article": false,
+          "incident_titles": ["La impresora 3D no calibra"],
+          "descriptions": [
+            "La impresora 3D del laboratorio no completa la calibración de la cama.",
+            "La impresora 3D detiene la impresión a la mitad con error de extrusor."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Software y sistema operativo",
+      "description": "Sistema operativo, actualizaciones, instalación y seguridad del equipo",
+      "weight": 20,
+      "resolution_hours": [2, 48],
+      "topics": [
+        {
+          "key": "actualizacion-fallida",
+          "has_article": true,
+          "article_title": "Actualización de Windows fallida",
+          "incident_titles": ["Falla la actualización de Windows", "Error al actualizar el sistema"],
+          "descriptions": [
+            "Windows Update falla siempre con el error 0x80070002.",
+            "El equipo se queda reiniciando en 'Trabajando en las actualizaciones'.",
+            "Después de actualizar, el sistema revierte los cambios al reiniciar."
+          ]
+        },
+        {
+          "key": "equipo-lento",
+          "has_article": true,
+          "article_title": "Equipo lento al iniciar y al trabajar",
+          "incident_titles": ["El equipo está muy lento", "Lentitud general del computador"],
+          "descriptions": [
+            "El computador tarda más de diez minutos en iniciar sesión.",
+            "Todo se congela al abrir varias aplicaciones a la vez.",
+            "El disco aparece al 100 % de uso y el equipo no responde."
+          ]
+        },
+        {
+          "key": "pantalla-azul",
+          "has_article": true,
+          "article_title": "Pantalla azul (BSOD)",
+          "incident_titles": ["Pantalla azul", "El equipo muestra error crítico y reinicia"],
+          "descriptions": [
+            "El equipo muestra pantalla azul con el error MEMORY_MANAGEMENT.",
+            "Aparece una pantalla azul varias veces al día y el equipo se reinicia.",
+            "Después de conectar la base de expansión aparece pantalla azul."
+          ]
+        },
+        {
+          "key": "instalacion-bloqueada",
+          "has_article": true,
+          "article_title": "No se puede instalar software",
+          "incident_titles": ["No se puede instalar un programa", "Instalación bloqueada"],
+          "descriptions": [
+            "Al instalar un programa pide credenciales de administrador.",
+            "La instalación se detiene con el mensaje 'Bloqueado por la política del sistema'.",
+            "El instalador se cierra sin mostrar ningún error."
+          ]
+        },
+        {
+          "key": "alerta-antivirus",
+          "has_article": true,
+          "article_title": "Alerta de antivirus o archivo en cuarentena",
+          "incident_titles": ["Alerta del antivirus", "Archivo enviado a cuarentena"],
+          "descriptions": [
+            "El antivirus muestra una alerta de amenaza al abrir un archivo adjunto.",
+            "Un archivo de trabajo fue enviado a cuarentena y ya no se puede abrir.",
+            "El antivirus bloquea una aplicación que se usa todos los días."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Aplicaciones",
+      "description": "Aplicaciones de negocio, ofimática y correo",
+      "weight": 18,
+      "resolution_hours": [2, 96],
+      "topics": [
+        {
+          "key": "error-ejecucion-app",
+          "has_article": true,
+          "article_title": "Error de ejecución en la aplicación de facturación",
+          "incident_titles": ["Error de ejecución en la aplicación", "La aplicación de facturación se cierra"],
+          "descriptions": [
+            "La aplicación de facturación se cierra con un error de ejecución al generar reportes.",
+            "Aparece 'Error inesperado en tiempo de ejecución' al guardar una factura.",
+            "La aplicación muestra una excepción no controlada y se cierra al iniciar."
+          ]
+        },
+        {
+          "key": "app-web-error-500",
+          "has_article": true,
+          "article_title": "Error 500 en aplicación web interna",
+          "incident_titles": ["Error 500 en el portal interno", "El sistema web muestra error del servidor"],
+          "descriptions": [
+            "El portal de solicitudes muestra 'Error 500 - Internal Server Error'.",
+            "Al enviar un formulario en el sistema web aparece un error del servidor.",
+            "El módulo de inventario web no carga y devuelve error 500."
+          ]
+        },
+        {
+          "key": "correo-no-sincroniza",
+          "has_article": true,
+          "article_title": "El correo no sincroniza",
+          "incident_titles": ["El correo no sincroniza", "No llegan correos nuevos"],
+          "descriptions": [
+            "Outlook no recibe correos nuevos desde ayer.",
+            "Los correos enviados se quedan en la bandeja de salida.",
+            "El correo en el celular no se sincroniza con el del computador."
+          ]
+        },
+        {
+          "key": "archivo-office-corrupto",
+          "has_article": true,
+          "article_title": "Archivo de Office dañado o que no abre",
+          "incident_titles": ["El archivo de Excel no abre", "Documento dañado"],
+          "descriptions": [
+            "Un archivo de Excel muestra 'El archivo está dañado y no se puede abrir'.",
+            "Un documento de Word se cerró sin guardar y ahora no abre.",
+            "La presentación de PowerPoint abre en blanco."
+          ]
+        },
+        {
+          "key": "licencia-office",
+          "has_article": true,
+          "article_title": "Licencia de Office expirada o sin activar",
+          "incident_titles": ["Office pide activación", "Licencia expirada"],
+          "descriptions": [
+            "Office muestra 'Producto sin licencia' y no permite editar.",
+            "Word pide iniciar sesión para activar la licencia cada vez que se abre.",
+            "La barra superior de Excel dice 'Error de activación del producto'."
+          ]
+        },
+        {
+          "key": "software-cad-licencia-red",
+          "has_article": false,
+          "incident_titles": ["El software CAD no encuentra el servidor de licencias"],
+          "descriptions": [
+            "El programa de diseño CAD no encuentra el servidor de licencias flotantes.",
+            "El software de modelado 3D dice que no hay licencias de red disponibles."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cuentas y accesos",
+      "description": "Contraseñas, autenticación y permisos",
+      "weight": 12,
+      "resolution_hours": [1, 8],
+      "topics": [
+        {
+          "key": "cuenta-bloqueada",
+          "has_article": true,
+          "article_title": "Cuenta bloqueada o contraseña olvidada",
+          "incident_titles": ["Cuenta bloqueada", "Olvidé mi contraseña"],
+          "descriptions": [
+            "La cuenta quedó bloqueada después de varios intentos fallidos.",
+            "No recuerdo la contraseña y no puedo iniciar sesión en el equipo.",
+            "La contraseña expiró y el sistema no permite cambiarla."
+          ]
+        },
+        {
+          "key": "mfa-no-llega",
+          "has_article": true,
+          "article_title": "No llega el código de verificación (MFA)",
+          "incident_titles": ["No llega el código de verificación", "Falla la autenticación en dos pasos"],
+          "descriptions": [
+            "No llega el código de verificación al celular para iniciar sesión.",
+            "Cambié de teléfono y la aplicación de autenticación ya no tiene mi cuenta.",
+            "El código de verificación siempre aparece como inválido."
+          ]
+        },
+        {
+          "key": "permisos-carpeta",
+          "has_article": true,
+          "article_title": "Sin permisos en carpeta compartida",
+          "incident_titles": ["Acceso denegado a carpeta compartida", "Sin permisos en la carpeta"],
+          "descriptions": [
+            "Al abrir la carpeta compartida de finanzas aparece 'Acceso denegado'.",
+            "Puedo ver los archivos de la carpeta pero no puedo modificarlos.",
+            "Después de cambiar de área perdí acceso a la carpeta del equipo."
+          ]
+        },
+        {
+          "key": "acceso-sistema-denegado",
+          "has_article": true,
+          "article_title": "Usuario sin acceso a un sistema interno",
+          "incident_titles": ["Sin acceso al sistema", "Usuario no autorizado en la aplicación"],
+          "descriptions": [
+            "El sistema de nómina dice 'Usuario no autorizado' al iniciar sesión.",
+            "Un usuario nuevo no tiene acceso al ERP aunque ya fue creado.",
+            "Después del cambio de rol no puedo entrar al módulo de compras."
+          ]
+        },
+        {
+          "key": "sesion-expira",
+          "has_article": true,
+          "article_title": "La sesión se cierra constantemente",
+          "incident_titles": ["La sesión se cierra sola", "Me saca del sistema constantemente"],
+          "descriptions": [
+            "La sesión del portal se cierra cada pocos minutos y se pierde el trabajo.",
+            "El sistema pide iniciar sesión de nuevo cada vez que cambio de pestaña.",
+            "Después de iniciar sesión, el sistema vuelve a la pantalla de inicio."
+          ]
+        }
+      ]
+    }
+  ]
+}
