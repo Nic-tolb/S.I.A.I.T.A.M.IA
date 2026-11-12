@@ -1,0 +1,42 @@
+[
+  {
+    "topic": "sin-internet",
+    "title": "Sin acceso a internet en el equipo",
+    "problem": "El equipo no tiene acceso a internet: ninguna página web carga, aunque el equipo está encendido y conectado a la red.",
+    "symptoms": "El icono de red muestra 'Sin internet' o un triángulo de advertencia aunque el cable de red está conectado. Ningún sitio web carga en el navegador. En algunos casos las carpetas compartidas de la red sí abren, pero internet no. Puede afectar a un solo equipo o a todo un piso u oficina.",
+    "cause": "Configuración IP inválida (dirección 169.254.x.x porque el servidor DHCP no respondió), cable de red o puerto del switch dañado, adaptador de red deshabilitado, proxy mal configurado en el equipo o una caída del enlace de internet o del router del piso.",
+    "solution": "1. Verificar si el problema afecta solo a este equipo o a varios del mismo piso; si afecta a varios, escalar a redes como posible caída del enlace o del switch.\n2. Revisar que el cable de red esté bien conectado en ambos extremos y que las luces del puerto de red parpadeen; probar con otro cable u otro puerto.\n3. Abrir el símbolo del sistema y ejecutar 'ipconfig /all'. Si la dirección IP empieza por 169.254, el equipo no obtuvo dirección del servidor DHCP.\n4. Ejecutar 'ipconfig /release' y luego 'ipconfig /renew' para pedir una nueva dirección IP.\n5. Ejecutar 'ping 8.8.8.8': si responde pero las páginas no cargan, revisar la configuración de DNS y de proxy del navegador.\n6. Deshabilitar y volver a habilitar el adaptador de red desde 'Conexiones de red', o reiniciar el equipo.\n7. Si persiste, registrar la dirección MAC del equipo y escalar al equipo de redes."
+  },
+  {
+    "topic": "wifi-intermitente",
+    "title": "Conexión Wi-Fi intermitente",
+    "problem": "La conexión Wi-Fi del equipo se pierde y se recupera de forma repetida, interrumpiendo el trabajo y las videollamadas.",
+    "symptoms": "El Wi-Fi se desconecta cada pocos minutos, sobre todo en salas de reuniones o zonas alejadas. La señal inalámbrica aparece y desaparece y las videollamadas se cortan o se congelan. El portátil pierde la conexión Wi-Fi al moverse entre oficinas y tarda en reconectarse.",
+    "cause": "Señal débil o interferencia en la zona, demasiados usuarios conectados al mismo punto de acceso, controlador (driver) de la tarjeta inalámbrica desactualizado, o la opción de ahorro de energía que apaga el adaptador Wi-Fi para ahorrar batería.",
+    "solution": "1. Comprobar la intensidad de la señal en el lugar donde ocurre; si es baja, acercarse al punto de acceso o usar cable de red mientras se revisa.\n2. Preguntar si otros usuarios de la misma zona tienen el problema; si es así, reportarlo a redes indicando la ubicación exacta (posible saturación o falla del punto de acceso).\n3. En el Administrador de dispositivos, abrir las propiedades del adaptador inalámbrico y en 'Administración de energía' desmarcar 'Permitir que el equipo apague este dispositivo para ahorrar energía'.\n4. Actualizar el controlador de la tarjeta Wi-Fi desde el sitio del fabricante o desde Windows Update.\n5. Olvidar la red Wi-Fi corporativa y volver a conectarse con las credenciales correctas.\n6. Si el portátil pierde la conexión al moverse entre oficinas, ajustar la 'Agresividad de itinerancia' (roaming) del adaptador a un valor medio o alto.\n7. Si persiste, escalar a redes con la hora y el lugar de las desconexiones."
+  },
+  {
+    "topic": "vpn-no-conecta",
+    "title": "La VPN corporativa no conecta",
+    "problem": "El usuario que trabaja fuera de la oficina no logra conectarse a la VPN corporativa, o se conecta pero no puede usar los sistemas internos.",
+    "symptoms": "Desde casa la VPN se queda en 'Conectando' y nunca termina. La VPN muestra error de autenticación aunque la contraseña es correcta. Después de conectar la VPN no se puede abrir ningún sistema interno ni carpeta de la red.",
+    "cause": "Contraseña de dominio expirada o cuenta bloqueada, cliente VPN desactualizado, red doméstica o pública que bloquea los puertos de la VPN, hora del equipo desincronizada que invalida el certificado, o DNS internos que no se aplican al conectarse.",
+    "solution": "1. Confirmar que el equipo tiene internet sin la VPN abriendo cualquier sitio público.\n2. Verificar que la contraseña de dominio no haya expirado y que la cuenta no esté bloqueada; si lo está, seguir el procedimiento de cuenta bloqueada.\n3. Revisar que la fecha y la hora del equipo sean correctas; una hora incorrecta provoca errores de certificado y de autenticación.\n4. Cerrar por completo el cliente VPN, volver a abrirlo y conectar de nuevo; si sigue en 'Conectando', reiniciar el equipo.\n5. Probar desde otra red (por ejemplo, compartir datos del celular); si así conecta, la red doméstica o pública está bloqueando la VPN.\n6. Si conecta pero los sistemas internos no abren, ejecutar 'ipconfig /flushdns' y probar el acceso por nombre y por dirección IP.\n7. Actualizar el cliente VPN a la versión publicada por TI y, si persiste, escalar con una captura del mensaje de error."
+  },
+  {
+    "topic": "red-lenta",
+    "title": "Red lenta y alta latencia",
+    "problem": "La red funciona pero con mucha lentitud: las páginas, las descargas y las videollamadas tardan mucho o se congelan.",
+    "symptoms": "Las páginas tardan más de un minuto en cargar, a veces en toda un área como ventas. La descarga de archivos desde el servidor es extremadamente lenta. Las videollamadas se congelan, se pixelan o tienen retraso por la lentitud de la red.",
+    "cause": "Saturación del ancho de banda por descargas, copias de seguridad o actualizaciones masivas; un equipo infectado o una aplicación que consume la red; puerto del switch negociando a baja velocidad (10/100 Mbps) o en half-duplex; o problemas en el enlace del proveedor de internet.",
+    "solution": "1. Determinar el alcance: si solo un equipo está lento, revisar ese equipo; si es toda un área, escalar a redes como posible saturación.\n2. En el Administrador de tareas, pestaña 'Rendimiento' y 'Monitor de recursos', revisar qué procesos consumen la red en el equipo afectado.\n3. Ejecutar 'ping -t' hacia el servidor o la puerta de enlace y observar si los tiempos superan 100 ms o hay paquetes perdidos.\n4. Revisar la velocidad del adaptador de red: si muestra 100 Mbps o menos en un puerto gigabit, cambiar el cable o el puerto.\n5. Pausar descargas grandes, sincronizaciones en la nube o actualizaciones mientras se trabaja.\n6. Ejecutar un análisis completo de antivirus para descartar software malicioso que consuma la red.\n7. Si afecta a varios usuarios, reportar a redes la hora, el área y los resultados del ping para revisar el enlace y el switch."
+  },
+  {
+    "topic": "dns-no-resuelve",
+    "title": "Sitios internos no cargan por fallo de DNS",
+    "problem": "Los sitios o sistemas internos no abren usando su nombre, aunque la red y la conexión funcionan.",
+    "symptoms": "La intranet no abre por nombre, pero sí escribiendo la dirección IP. El navegador muestra 'No se puede encontrar el servidor' en los sitios internos. Algunos sitios abren y otros no, con el error DNS_PROBE_FINISHED_NXDOMAIN.",
+    "cause": "El equipo usa servidores DNS públicos o incorrectos en lugar de los DNS corporativos, la caché de DNS tiene registros desactualizados, el servidor DNS interno falla, o el registro DNS del sistema interno fue cambiado o eliminado.",
+    "solution": "1. Ejecutar 'nslookup nombre-del-sitio' en el símbolo del sistema para ver qué servidor DNS responde y si resuelve el nombre.\n2. Ejecutar 'ipconfig /all' y comprobar que los servidores DNS configurados son los corporativos y no otros (por ejemplo 8.8.8.8).\n3. Si los DNS están configurados a mano, cambiar el adaptador a 'Obtener la dirección del servidor DNS automáticamente'.\n4. Limpiar la caché de DNS con 'ipconfig /flushdns' y cerrar y abrir el navegador.\n5. Si se usa VPN, desconectar y volver a conectar para que se apliquen los DNS internos.\n6. Si varios usuarios no resuelven el mismo sitio, escalar a infraestructura indicando el nombre exacto que falla, porque el problema está en el servidor DNS o en el registro del sitio."
+  }
+]
