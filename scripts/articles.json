@@ -158,5 +158,45 @@
     "symptoms": "Office muestra 'Producto sin licencia' y no permite editar. Word pide iniciar sesión para activar la licencia cada vez que se abre. La barra superior de Excel dice 'Error de activación del producto'.",
     "cause": "La sesión de Office se inició con una cuenta personal en lugar de la corporativa, la licencia no está asignada al usuario, las credenciales guardadas están vencidas, o el equipo no pudo validar la activación por falta de conexión durante varios días.",
     "solution": "1. Abrir cualquier aplicación de Office, ir a 'Archivo > Cuenta' y revisar con qué cuenta está iniciada la sesión.\n2. Si aparece una cuenta personal, cerrar sesión e iniciar con la cuenta corporativa.\n3. Verificar que el equipo tenga internet y pulsar 'Actualizar licencia' en la misma pantalla.\n4. Cerrar todas las aplicaciones de Office y volver a abrirlas.\n5. Si sigue pidiendo activación, borrar las credenciales de Office guardadas en el 'Administrador de credenciales' de Windows e iniciar sesión de nuevo.\n6. Si el mensaje indica que la cuenta no tiene licencia asignada, solicitar a TI la asignación de la licencia de Office.\n7. Como último paso, ejecutar la 'Reparación en línea' de Office desde 'Aplicaciones instaladas'."
+  },
+  {
+    "topic": "cuenta-bloqueada",
+    "title": "Cuenta bloqueada o contraseña olvidada",
+    "problem": "El usuario no puede iniciar sesión porque su cuenta está bloqueada, olvidó la contraseña o la contraseña expiró.",
+    "symptoms": "La cuenta quedó bloqueada después de varios intentos fallidos. No recuerdo la contraseña y no puedo iniciar sesión en el equipo. La contraseña expiró y el sistema no permite cambiarla. Aparece 'La cuenta de referencia está bloqueada'.",
+    "cause": "Varios intentos con una contraseña incorrecta (a veces de un celular o equipo con la contraseña antigua guardada), contraseña expirada según la política de seguridad, u olvido de la contraseña tras un cambio reciente.",
+    "solution": "1. Esperar el tiempo de desbloqueo automático definido por la política (normalmente 15 a 30 minutos) antes de volver a intentar.\n2. Si olvidó la contraseña, usar el portal de autoservicio de restablecimiento de contraseña con la verificación registrada (celular o correo alternativo).\n3. Si no tiene acceso al autoservicio, solicitar el desbloqueo a la mesa de ayuda; el técnico debe verificar la identidad del usuario antes de restablecerla.\n4. Crear una contraseña nueva que cumpla la política (longitud mínima, mayúsculas, números y símbolos) y que no se haya usado antes.\n5. Actualizar la contraseña nueva en todos los dispositivos donde esté guardada: celular (correo), VPN y unidades de red mapeadas.\n6. Si la cuenta se bloquea de nuevo sin intentos del usuario, reportarlo, porque algún dispositivo sigue usando la contraseña antigua o puede haber un intento de acceso no autorizado."
+  },
+  {
+    "topic": "mfa-no-llega",
+    "title": "No llega el código de verificación (MFA)",
+    "problem": "El usuario no puede completar la autenticación en dos pasos porque el código de verificación no llega o no es aceptado.",
+    "symptoms": "No llega el código de verificación al celular para iniciar sesión. Cambié de teléfono y la aplicación de autenticación ya no tiene mi cuenta. El código de verificación siempre aparece como inválido.",
+    "cause": "Número de teléfono registrado desactualizado, mala señal o bloqueo de SMS de remitentes desconocidos, aplicación de autenticación no transferida al teléfono nuevo, o la hora del celular desincronizada, que hace que los códigos temporales no sean válidos.",
+    "solution": "1. Comprobar que el celular tenga señal o datos y revisar si los SMS de remitentes desconocidos están siendo filtrados.\n2. En la pantalla de inicio de sesión, elegir 'Usar otro método de verificación' si hay otro registrado (llamada, aplicación o correo alternativo).\n3. Si el código de la aplicación de autenticación aparece como inválido, activar en el celular la fecha y la hora automáticas.\n4. Si cambió de teléfono, solicitar a la mesa de ayuda que restablezca el método de autenticación; el técnico debe verificar la identidad del usuario.\n5. Tras el restablecimiento, registrar de nuevo la aplicación de autenticación en el teléfono nuevo y agregar un segundo método de respaldo.\n6. Revisar que el número de teléfono registrado esté actualizado en el perfil de seguridad."
+  },
+  {
+    "topic": "permisos-carpeta",
+    "title": "Sin permisos en carpeta compartida",
+    "problem": "El usuario no puede abrir o modificar archivos de una carpeta compartida de la red que necesita para su trabajo.",
+    "symptoms": "Al abrir la carpeta compartida de un área, por ejemplo finanzas, aparece 'Acceso denegado'. Puedo ver los archivos de la carpeta pero no puedo modificarlos: se abren como 'Solo lectura'. Después de cambiar de área perdí acceso a la carpeta del equipo.",
+    "cause": "El usuario no pertenece al grupo de seguridad que tiene permisos sobre la carpeta, tiene solo permisos de lectura, fue retirado del grupo tras un cambio de área, o los cambios de grupo aún no se aplicaron en su sesión.",
+    "solution": "1. Confirmar la ruta exacta de la carpeta (por ejemplo, \\\\servidor\\finanzas) y qué tipo de acceso necesita: lectura o modificación.\n2. Si fue agregado recientemente a un grupo, cerrar sesión y volver a iniciarla para que se apliquen los nuevos permisos.\n3. Si el archivo se abre como 'Solo lectura', comprobar que no esté abierto por otra persona ni marcado como de solo lectura en sus propiedades.\n4. Si no tiene el permiso, solicitar el acceso indicando la ruta y el tipo de permiso; la solicitud debe ser aprobada por el responsable de la carpeta o el jefe del área.\n5. TI agrega al usuario al grupo de seguridad correspondiente, sin dar permisos individuales.\n6. Después de un cambio de área, solicitar los accesos del área nueva; los del área anterior se retiran por seguridad."
+  },
+  {
+    "topic": "acceso-sistema-denegado",
+    "title": "Usuario sin acceso a un sistema interno",
+    "problem": "El usuario no puede entrar a un sistema interno (como nómina, ERP o compras) o a uno de sus módulos porque no está autorizado.",
+    "symptoms": "El sistema de nómina dice 'Usuario no autorizado' al iniciar sesión. Un usuario nuevo no tiene acceso al ERP aunque ya fue creado. Después del cambio de rol no puedo entrar al módulo de compras.",
+    "cause": "La cuenta existe pero no tiene asignado el rol o perfil del sistema, la solicitud de acceso no fue aprobada o no se ha procesado, el cambio de rol retiró permisos anteriores, o la cuenta del sistema no está vinculada a la cuenta corporativa.",
+    "solution": "1. Verificar que el usuario inicia sesión con la cuenta corporativa correcta.\n2. Confirmar con el jefe inmediato qué sistema y qué módulo o rol necesita para su cargo.\n3. Registrar la solicitud de acceso indicando el sistema, el módulo y el rol requerido; debe ser aprobada por el responsable del sistema o del área.\n4. Para usuarios nuevos, comprobar que la solicitud de alta en el sistema fue aprobada y procesada, no solo la creación de la cuenta corporativa.\n5. Tras un cambio de rol, solicitar los permisos del nuevo rol; los anteriores se retiran según la política de accesos.\n6. Una vez asignado el rol, cerrar sesión por completo y volver a entrar para que se apliquen los permisos.\n7. Si el acceso aprobado sigue sin funcionar, escalar al administrador del sistema con el usuario y el mensaje de error."
+  },
+  {
+    "topic": "sesion-expira",
+    "title": "La sesión se cierra constantemente",
+    "problem": "Un sistema o portal web cierra la sesión del usuario con demasiada frecuencia o no mantiene la sesión iniciada.",
+    "symptoms": "La sesión del portal se cierra cada pocos minutos y se pierde el trabajo. El sistema pide iniciar sesión de nuevo cada vez que cambio de pestaña. Después de iniciar sesión, el sistema vuelve a la pantalla de inicio.",
+    "cause": "El navegador bloquea o borra las cookies del sitio, la caché del navegador tiene datos de sesión antiguos, una extensión del navegador interfiere con la sesión, la hora del equipo es incorrecta, o el tiempo de inactividad configurado en el sistema es muy corto.",
+    "solution": "1. Comprobar que la fecha y la hora del equipo sean correctas y estén sincronizadas automáticamente.\n2. Borrar las cookies y la caché del navegador para el sitio afectado y volver a iniciar sesión.\n3. En la configuración de privacidad del navegador, permitir las cookies del sitio interno y desactivar la opción de borrar cookies al cerrar.\n4. Probar en una ventana privada o en otro navegador; si allí funciona, desactivar las extensiones una por una para encontrar la que causa el problema.\n5. No abrir el mismo sistema con dos cuentas distintas en el mismo navegador.\n6. Guardar el trabajo con frecuencia mientras se resuelve.\n7. Si le pasa a varios usuarios, escalar al equipo de la aplicación para revisar el tiempo de expiración de la sesión."
   }
 ]
