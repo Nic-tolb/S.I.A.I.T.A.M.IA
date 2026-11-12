@@ -16,6 +16,9 @@ public class RestClientConfig {
     @Bean
     public RestClient n8nRestClient(N8nProperties props) {
         HttpClient httpClient = HttpClient.newBuilder()
+                // The JDK client defaults to HTTP/2 and sends an "Upgrade: h2c" request over plain HTTP;
+                // n8n's webhook server never answers that upgrade on POST, so every call hit the read timeout
+                .version(HttpClient.Version.HTTP_1_1)
                 .connectTimeout(props.connectTimeout())
                 .build();
 
