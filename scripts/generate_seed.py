@@ -13,9 +13,24 @@ import argparse
 import json
 import random
 import unicodedata
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 
 SEED = 2026
+
+# Bogotá has no daylight saving time, so a fixed -05:00 offset is exact
+# (and avoids depending on the tzdata package on Windows).
+BOGOTA = timezone(timedelta(hours=-5))
+
+INCIDENT_COUNT = 150
+# 12 full weeks, Monday to Sunday, fixed so the data does not change with the current date
+PERIOD_START = date(2026, 8, 10)
+PERIOD_END = date(2026, 11, 1)
+WEEKEND_WEIGHT = 0.25          # support receives fewer requests on weekends
+WEEKLY_GROWTH = 0.04           # +4 % per week: a mild upward trend to analyse
+WORK_HOURS = (7, 18)           # incidents are created between 07:00 and 18:59
+NO_ARTICLE_TOPIC_WEIGHT = 0.3  # topics without an article are rare (test 3)
+PRIORITY_WEIGHTS = {"P1": 10, "P2": 25, "P3": 40, "P4": 25}
 
 USER_COUNT = 10
 EMAIL_DOMAIN = "empresa.com"
@@ -85,6 +100,79 @@ def users_sql(users):
     return lines
 
 
+def day_weights():
+    """Every day of the period with its relative weight: weekdays > weekends, later weeks > earlier."""
+    days, weights = [], []
+    day = PERIOD_START
+    while day <= PERIOD_END:
+        week = (day - PERIOD_START).days // 7
+        weight = (1 + WEEKLY_GROWTH * week) * (WEEKEND_WEIGHT if day.weekday() >= 5 else 1)
+        days.append(day)
+        weights.append(weight)
+        day += timedelta(days=1)
+    return days, weights
+
+
+def random_created_at(rng, day):
+    hour = rng.randint(*WORK_HOURS)
+    minute = rng.randint(0, 59)
+    return datetime.combine(day, time(hour, minute), tzinfo=BOGOTA)
+
+
+def pick_topic(rng, category):
+    topics = category["topics"]
+    weights = [1 if t["has_article"] else NO_ARTICLE_TOPIC_WEIGHT for t in topics]
+    return rng.choices(topics, weights=weights)[0]
+
+
+def generate_incidents(rng, categories, users):
+    """150 open incidents spread over dates, categories, topics, users and priorities.
+    Ids follow creation order, like a real system."""
+    days, weights = day_weights()
+    category_weights = [c["weight"] for c in categories]
+    priorities = list(PRIORITY_WEIGHTS)
+    priority_weights = list(PRIORITY_WEIGHTS.values())
+
+    incidents = []
+    for _ in range(INCIDENT_COUNT):
+        category_index = rng.choices(range(len(categories)), weights=category_weights)[0]
+        topic = pick_topic(rng, categories[category_index])
+        incidents.append({
+            "category_id": category_index + 1,
+            "topic": topic["key"],
+            "title": rng.choice(topic["incident_titles"]),
+            "description": rng.choice(topic["descriptions"]),
+            "user_id": rng.choice(users)["id"],
+            "priority": rng.choices(priorities, weights=priority_weights)[0],
+            "created_at": random_created_at(rng, rng.choices(days, weights=weights)[0]),
+        })
+
+    incidents.sort(key=lambda i: i["created_at"])
+    for i, incident in enumerate(incidents, start=1):
+        incident["id"] = i
+    return incidents
+
+
+def sql_timestamp(value):
+    return sql_text(value.isoformat(sep=" "))
+
+
+def incidents_sql(incidents):
+    lines = [
+        "-- Incidents",
+        "INSERT INTO incidents (id, title, description, category_id, user_id, priority, status,"
+        " created_at, updated_at) VALUES",
+    ]
+    rows = [
+        f"    ({i['id']}, {sql_text(i['title'])}, {sql_text(i['description'])}, {i['category_id']},"
+        f" {i['user_id']}, {sql_text(i['priority'])}, 'OPEN',"
+        f" {sql_timestamp(i['created_at'])}, {sql_timestamp(i['created_at'])})"
+        for i in incidents
+    ]
+    lines.append(",\n".join(rows) + ";")
+    return lines
+
+
 def reset_sequence_sql(table):
     """Explicit ids do not advance the sequence; move it past the max id."""
     return f"SELECT setval(pg_get_serial_sequence('{table}', 'id'), (SELECT max(id) FROM {table}));"
@@ -93,10 +181,12 @@ def reset_sequence_sql(table):
 def build_seed(rng):
     categories = load_catalog()
     users = generate_users(rng)
+    incidents = generate_incidents(rng, categories, users)
     sections = [
         categories_sql(categories),
         users_sql(users),
-        [reset_sequence_sql("categories"), reset_sequence_sql("users")],
+        incidents_sql(incidents),
+        [reset_sequence_sql("categories"), reset_sequence_sql("users"), reset_sequence_sql("incidents")],
     ]
     return sections
 
