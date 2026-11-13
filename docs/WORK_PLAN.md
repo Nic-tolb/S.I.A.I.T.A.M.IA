@@ -85,8 +85,8 @@ Branches: `feature/categories-users`, `feature/incidents`, `feature/knowledge-ba
 - [x] Real `IndexingService` implementation using `N8nClient`
 
 **Phase 2**
-- [ ] **n8n flow 2 (RAG)**: embedding, Qdrant search, threshold filter, grounded prompt and JSON response
-- [ ] If nothing passes the threshold, return `NO_RESULTS` without calling the LLM
+- [x] **n8n flow 2 (RAG)**: embedding, Qdrant search, threshold filter, grounded prompt and JSON response
+- [x] If nothing passes the threshold, return `NO_RESULTS` without calling the LLM
 - [ ] `AiQueryService`: create the query as PENDING, call n8n and validate that the sources exist and are active in the database
 - [ ] Save the answer and its sources, with status ANSWERED, NO_RESULTS or ERROR
 - [ ] Endpoint `POST /api/incidents/{id}/assistance` with `@NotBlank` on the description
@@ -95,7 +95,7 @@ Branches: `feature/categories-users`, `feature/incidents`, `feature/knowledge-ba
 **Phase 3**
 - [x] Calibrate the threshold with relevant and irrelevant questions, and document the result
 - [ ] Tests 1, 2, 3, 6, 7 and 8 (test 8 uses an invalid API key)
-- [ ] Export the workflows to `n8n/workflows/` and check that they contain no keys
+- [x] Export the workflows to `n8n/workflows/` and check that they contain no keys
 - [ ] Architecture diagram
 
 Branches: `feature/n8n-indexing`, `feature/n8n-rag`, `feature/rag-assistant`, `feature/assistant-ui`
