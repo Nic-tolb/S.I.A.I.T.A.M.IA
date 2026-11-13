@@ -17,7 +17,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT = Path(sys.argv[1]) if len(sys.argv) > 1 else None
+OUTPUT = Path(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1] else None
 
 # Realistic IT incidents with no article in the knowledge base (some close to existing topics on purpose)
 NO_ARTICLE_EXTRA = [
