@@ -20,3 +20,29 @@ Short recommendations, added as development progresses.
 - **Keys only in `.env`**, read in n8n with `$env.*`. Review exported JSONs before committing.
 - **Use AI inside your own branch:** each member reviews and understands generated code before committing. The history must reflect each person's work, and everyone must be able to explain their code in the presentation.
 - **Reproducible synthetic data:** generate it with a script and a fixed seed, and document its rules.
+
+## Member A — Jonatan-17 (Data & analytics)
+
+**Tool:** an AI coding assistant, used inside the IDE as a technical tutor and reviewer.
+
+### Assisted components
+
+| Component | How the AI helped | My part |
+|---|---|---|
+| `database/init/01_schema.sql` | Proposed the table structure, CHECK constraints, indexes and delete rules | Chose the domain values, ran the script in PostgreSQL and tested every constraint with valid and invalid data |
+| JPA entities, enums and repositories | Drafted the entities to match the schema | Verified them by starting the backend in Hibernate `validate` mode and running the unit tests |
+| `docs/diagrams/er-diagram.md` | Drafted the Mermaid diagram from the schema | Reviewed relationships and delete rules |
+| `scripts/catalog.json`, `docs/knowledge-topics.md` | Proposed the 25 topics and incident descriptions | Defined the categories, the topics without an article (test 3) and shared the contract with member C |
+| Review of PR #12 | Pointed out the impact of creating incidents as resolved on the average resolution time | Ran the PR tests locally and published the review |
+
+### Technical decisions taken with AI support
+
+- **Incident status** `OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`; RESOLVED and CLOSED count as resolved.
+- **Priority** `P1` (critical) to `P4` (low).
+- **Articles** have two flags, `active` and `verified`; only articles with both can be RAG sources (RF02).
+- **`resolved_at` is set if and only if the incident is resolved**, enforced by a CHECK and by `Incident#changeStatus`, so the resolution rate and time cannot be inconsistent.
+- **Delete rules:** RESTRICT for users, categories and articles used as sources (history is kept); CASCADE from an incident to its AI history.
+- **Column types** chosen to match Java types (`DOUBLE PRECISION` ↔ `Double`, `INTEGER` ↔ `Integer`) so Hibernate validation passes.
+- **Topics shared between incidents and articles**, so RAG finds real matches, with two "trap" topics to calibrate the threshold.
+
+Every generated change was read, run and tested before committing, so I can explain it in the presentation.
