@@ -127,3 +127,58 @@ main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; }
 .badge-query-no_results { color: var(--muted); }
 .badge-query-pending { color: var(--primary); border-color: var(--primary); }
 .badge-query-error { color: var(--error); border-color: var(--error); }
+
+/* ---------------------------------------------------------------------
+   Cards and forms, shared by the views (incidents, knowledge base...).
+   --------------------------------------------------------------------- */
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+}
+.card h3 { margin: 0 0 0.75rem; font-size: 1rem; }
+
+/* Fields flow in columns on wide screens and stack on phones */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem 1rem;
+}
+.form-grid .field-wide { grid-column: 1 / -1; }
+
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field label { font-size: 0.85rem; color: var(--muted); }
+.field-check { flex-direction: row; align-items: center; gap: 0.5rem; }
+
+input, select, textarea {
+    font: inherit;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    width: 100%;
+}
+input[type="checkbox"] { width: auto; }
+textarea { min-height: 5rem; resize: vertical; }
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: -1px;
+}
+
+.form-actions { display: flex; gap: 0.5rem; margin-top: 0.9rem; flex-wrap: wrap; }
+
+.btn {
+    font: inherit;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+}
+.btn:disabled { opacity: 0.6; cursor: wait; }
+.btn-secondary { background: transparent; color: var(--primary); }
