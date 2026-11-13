@@ -12,9 +12,19 @@ Usage (from the repository root):
 import argparse
 import json
 import random
+import unicodedata
 from pathlib import Path
 
 SEED = 2026
+
+USER_COUNT = 10
+EMAIL_DOMAIN = "empresa.com"
+FIRST_NAMES = ["Laura", "Andrés", "Camila", "Julián", "Valentina", "Santiago",
+               "Natalia", "Felipe", "Daniela", "Mateo", "Paula", "Sebastián"]
+LAST_NAMES = ["Gómez", "Rodríguez", "Martínez", "López", "Hernández", "Ramírez",
+              "Torres", "Castro", "Vargas", "Moreno", "Rojas", "Muñoz"]
+AREAS = ["Finanzas", "Ventas", "Recursos Humanos", "Operaciones", "Logística",
+         "Compras", "Marketing", "Tecnología"]
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG_PATH = ROOT / "scripts" / "catalog.json"
@@ -44,6 +54,37 @@ def categories_sql(categories):
     return lines
 
 
+def ascii_slug(text):
+    """'Muñoz' -> 'munoz': emails without accents, in lower case (as the user API stores them)."""
+    plain = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
+    return plain.lower().replace(" ", "")
+
+
+def generate_users(rng):
+    """10 users with unique names; sampling without replacement avoids duplicate emails."""
+    first_names = rng.sample(FIRST_NAMES, USER_COUNT)
+    last_names = rng.sample(LAST_NAMES, USER_COUNT)
+    users = []
+    for i, (first, last) in enumerate(zip(first_names, last_names), start=1):
+        users.append({
+            "id": i,
+            "name": f"{first} {last}",
+            "email": f"{ascii_slug(first)}.{ascii_slug(last)}@{EMAIL_DOMAIN}",
+            "area": rng.choice(AREAS),
+        })
+    return users
+
+
+def users_sql(users):
+    lines = ["-- Users", "INSERT INTO users (id, name, email, area) VALUES"]
+    rows = [
+        f"    ({u['id']}, {sql_text(u['name'])}, {sql_text(u['email'])}, {sql_text(u['area'])})"
+        for u in users
+    ]
+    lines.append(",\n".join(rows) + ";")
+    return lines
+
+
 def reset_sequence_sql(table):
     """Explicit ids do not advance the sequence; move it past the max id."""
     return f"SELECT setval(pg_get_serial_sequence('{table}', 'id'), (SELECT max(id) FROM {table}));"
@@ -51,9 +92,11 @@ def reset_sequence_sql(table):
 
 def build_seed(rng):
     categories = load_catalog()
+    users = generate_users(rng)
     sections = [
         categories_sql(categories),
-        [reset_sequence_sql("categories")],
+        users_sql(users),
+        [reset_sequence_sql("categories"), reset_sequence_sql("users")],
     ]
     return sections
 
