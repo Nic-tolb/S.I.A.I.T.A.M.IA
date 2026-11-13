@@ -58,6 +58,6 @@ Tasks, phases and integration points: [docs/WORK_PLAN.md](docs/WORK_PLAN.md).
 
 | Member | Module |
 |---|---|
-| | A: Data & analytics (RF06, RF07, data model) |
+| Jonatan-17 | A: Data & analytics (RF06, RF07, data model) |
 | Nic-tolb | B: Management & operations (RF01, RF02, RF08) |
 | Mic022 | C: AI & RAG (RF03, RF04, RF05) |

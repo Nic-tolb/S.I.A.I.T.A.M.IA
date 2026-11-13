@@ -11,7 +11,7 @@ Each member owns **complete vertical modules**: database or logic, API, frontend
 | Mandatory tests | 4, 5 | 9, 10 | 1, 2, 3, 6, 7, 8 |
 | Deliverables | SQL script, ER diagram, data analysis report | Postman collection and Swagger, testing document, README | n8n workflow JSONs, architecture diagram, Docker Compose |
 
-Assign names: **A** = ______ · **B** = ______ · **C** = Mic022
+Assign names: **A** = Jonatan-17 · **B** = Nic-tolb · **C** = Mic022
 
 ---
 
