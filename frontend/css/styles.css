@@ -182,3 +182,13 @@ input:focus, select:focus, textarea:focus {
 }
 .btn:disabled { opacity: 0.6; cursor: wait; }
 .btn-secondary { background: transparent; color: var(--primary); }
+
+/* ---------------------------------------------------------------------
+   History & rating view (views/history.js)
+   --------------------------------------------------------------------- */
+
+.history-item h4 { margin: 0.9rem 0 0.35rem; font-size: 0.9rem; color: var(--muted); }
+.history-item p { margin: 0 0 0.5rem; line-height: 1.45; }
+.history-item ol { margin: 0 0 0.5rem; padding-left: 1.3rem; line-height: 1.45; }
+.history-header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.history-rating { margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
