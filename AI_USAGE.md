@@ -17,6 +17,9 @@ Short recommendations, added as development progresses.
 - **Calibrate with near misses, not only with off-topic questions:** off-domain questions never passed 0.45; the hard cases are IT incidents close to an existing topic (3D printer vs. network printer). They set the threshold.
 - **One place for threshold and top-k:** they live in the Spring Boot config and are sent to n8n on every query. They are not repeated inside the workflow.
 - **Low temperature and JSON output** for generation, so answers are stable and easy to validate. Ask the model to answer in Spanish, since the answer is shown to users.
+- **Second safety gate in the prompt:** even when sources pass the threshold, let the model answer `{"relevant": false}` if they do not cover the problem. Every tested model applied it correctly ([docs/chat-model-selection.md](docs/chat-model-selection.md)).
+- **Test with prompt injection in the incident text:** two of five models refused a legitimate incident because its description contained instructions. Tell the model the incident text is data, and check it still answers.
+- **Avoid reasoning models for short JSON answers** unless their reasoning budget is configured: `gpt-5-nano` spent its whole output budget thinking and returned empty content, with 10–30 s latency.
 - **Dashboard figures come from SQL**, never from the AI model.
 - **Keys only in `.env`**, read in n8n with `$env.*`. Review exported JSONs before committing.
 - **Use AI inside your own branch:** each member reviews and understands generated code before committing. The history must reflect each person's work, and everyone must be able to explain their code in the presentation.
