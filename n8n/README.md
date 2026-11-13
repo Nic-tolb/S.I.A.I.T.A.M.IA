@@ -43,7 +43,7 @@ Response:
 
 Request (threshold and topK are set by Spring Boot, the single source of truth):
 ```json
-{ "queryId": 45, "description": "No hay conexión a internet en el piso 3", "threshold": 0.70, "topK": 5 }
+{ "queryId": 45, "description": "No hay conexión a internet en el piso 3", "threshold": 0.60, "topK": 5 }
 ```
 
 Response:
