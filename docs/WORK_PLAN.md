@@ -73,7 +73,7 @@ Branches: `feature/categories-users`, `feature/incidents`, `feature/knowledge-ba
 
 **Phase 0**
 - [x] Bring up n8n and Qdrant with Docker
-- [ ] Pick the embedding and chat models on OpenRouter, and verify that the embedding model works
+- [x] Pick the embedding and chat models on OpenRouter, and verify that the embedding model works
 - [x] Create the Qdrant collection with the right dimension
 - [x] Publish the `IndexingService` interface (with an empty implementation) so B can use it
 - [x] Write the **25 knowledge articles** (in Spanish): title, problem, symptoms, cause and solution
