@@ -50,13 +50,23 @@ final class IncidentSpecifications {
 
     /** From the start of {@code day} (inclusive). */
     static Specification<Incident> createdFrom(LocalDate day, ZoneId zone) {
-        Instant start = day.atStartOfDay(zone).toInstant();
+        Instant start = startOfDay(day, zone);
         return (root, query, cb) -> cb.greaterThanOrEqualTo(root.get("createdAt"), start);
     }
 
     /** Until the end of {@code day} (inclusive): before the start of the next day. */
     static Specification<Incident> createdUntil(LocalDate day, ZoneId zone) {
-        Instant nextDay = day.plusDays(1).atStartOfDay(zone).toInstant();
-        return (root, query, cb) -> cb.lessThan(root.get("createdAt"), nextDay);
+        Instant end = startOfNextDay(day, zone);
+        return (root, query, cb) -> cb.lessThan(root.get("createdAt"), end);
+    }
+
+    /** First instant of {@code day} in {@code zone}, e.g. 2026-10-01 in Bogotá → 2026-10-01T05:00:00Z. */
+    static Instant startOfDay(LocalDate day, ZoneId zone) {
+        return day.atStartOfDay(zone).toInstant();
+    }
+
+    /** Exclusive upper bound of {@code day}: the first instant of the next day in {@code zone}. */
+    static Instant startOfNextDay(LocalDate day, ZoneId zone) {
+        return startOfDay(day.plusDays(1), zone);
     }
 }
