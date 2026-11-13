@@ -72,17 +72,17 @@ Branches: `feature/categories-users`, `feature/incidents`, `feature/knowledge-ba
 ## Member C — AI & RAG
 
 **Phase 0**
-- [ ] Bring up n8n and Qdrant with Docker
+- [x] Bring up n8n and Qdrant with Docker
 - [ ] Pick the embedding and chat models on OpenRouter, and verify that the embedding model works
-- [ ] Create the Qdrant collection with the right dimension
-- [ ] Publish the `IndexingService` interface (with an empty implementation) so B can use it
-- [ ] Write the **25 knowledge articles** (in Spanish): title, problem, symptoms, cause and solution
-- [ ] Leave **at least one topic without an article**, for test 3
+- [x] Create the Qdrant collection with the right dimension
+- [x] Publish the `IndexingService` interface (with an empty implementation) so B can use it
+- [x] Write the **25 knowledge articles** (in Spanish): title, problem, symptoms, cause and solution
+- [x] Leave **at least one topic without an article**, for test 3
 
 **Phase 1**
-- [ ] **n8n flow 1 (indexing)**: upsert with id = article id; delete the point if the article is inactive
-- [ ] Full reindex endpoint in Spring Boot
-- [ ] Real `IndexingService` implementation using `N8nClient`
+- [x] **n8n flow 1 (indexing)**: upsert with id = article id; delete the point if the article is inactive
+- [x] Full reindex endpoint in Spring Boot
+- [x] Real `IndexingService` implementation using `N8nClient`
 
 **Phase 2**
 - [ ] **n8n flow 2 (RAG)**: embedding, Qdrant search, threshold filter, grounded prompt and JSON response
