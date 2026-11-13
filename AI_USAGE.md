@@ -13,7 +13,8 @@ Short recommendations, added as development progresses.
 - **Double source validation:** even if Qdrant filters them, Spring Boot must confirm that every article exists and is active in the relational database.
 - **Justify the threshold with data:** try relevant and irrelevant questions, record the similarities and pick the cutoff based on evidence.
 - **Indexing failures must not break article CRUD:** sync after the transaction commits, log errors instead of throwing, and keep a full re-index endpoint to recover.
-- **The threshold depends on the model:** with `baai/bge-m3` (1024 dims) a short query vs. a full article scored ~0.61–0.64 on-topic, ~0.38–0.40 other IT topics, ~0.22 off-domain. A typical 0.70 would reject valid matches; 0.55 is the provisional cutoff until calibrated with the 25 articles.
+- **The threshold depends on the model:** with `baai/bge-m3`, relevant incidents scored 0.50–0.81 against their article, while questions without an article reached up to 0.59. A typical 0.70 would reject more than half of the valid incidents. Calibrated value: **0.60**, the lowest that keeps every question without an article out ([docs/threshold-calibration.md](docs/threshold-calibration.md)).
+- **Calibrate with near misses, not only with off-topic questions:** off-domain questions never passed 0.45; the hard cases are IT incidents close to an existing topic (3D printer vs. network printer). They set the threshold.
 - **One place for threshold and top-k:** they live in the Spring Boot config and are sent to n8n on every query. They are not repeated inside the workflow.
 - **Low temperature and JSON output** for generation, so answers are stable and easy to validate. Ask the model to answer in Spanish, since the answer is shown to users.
 - **Dashboard figures come from SQL**, never from the AI model.
